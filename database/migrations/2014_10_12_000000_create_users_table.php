@@ -22,10 +22,13 @@ return new class extends Migration
             $table->integer('win')->default('0');
             $table->integer('lose')->default('0');
             $table->unsignedBigInteger('permission_id')->default('1');
+            $table->unsignedBigInteger('image_id')->default('1');
             $table->rememberToken();
             $table->timestamps();
 
             $table->foreign('permission_id')->references('id')->on('permissions')->onDelete('cascade');
+            $table->foreign('image_id')->references('id')->on('images')->onDelete('cascade');
+
         });
     }
 

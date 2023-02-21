@@ -13,6 +13,7 @@ export default function UserForm() {
         id: null,
         name: '',
         email: '',
+        permission_id: '',
         password: '',
         password_confirmation: '',
     })
@@ -30,7 +31,7 @@ export default function UserForm() {
             })
         }, [])
     }
-
+    
     const onSubmit = (ev) => {
         ev.preventDefault();
         if (user.id) {
@@ -59,12 +60,10 @@ export default function UserForm() {
             })
         }
     }
-
-
     
     return (
-
-    <>
+        
+        <>
         {user.id && <h1>Update User: {user.name}</h1>}
         {!user.id && <h1>New User</h1>}
         <div className="card animated fadeInDown">
@@ -83,6 +82,11 @@ export default function UserForm() {
 
                 <input value={user.name} onChange={ev => setUser({...user, name: ev.target.value})} placeholder="Name" />
                 <input type="email" value={user.email} onChange={ev => setUser({...user, email: ev.target.value})} placeholder="Email" />
+                <select id="permission" value={user.permission_id} onChange={ev => setUser({...user, permission_id: document.getElementById('permission').value})} placeholder="Permission">
+                    <option value="1">Admin</option>
+                    <option value="2">User</option>
+                    <option value="3">Premium</option>
+                </select>
                 <input type="password" onChange={ev => setUser({...user, password: ev.target.value})} placeholder="Password" />
                 <input type="password" onChange={ev => setUser({...user, password_confirmation: ev.target.value})} placeholder="Password Comfirmation" />
                 <button className="btn">Save</button>

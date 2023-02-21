@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom";
 import axiosClient from "../axios-client";
-import Navbar from "../components/Navbar";
+import { UseStateContext } from "../contexts/ContextProvider";
 
 export default function Users() {
 
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(false);
+    const {setNotification} = UseStateContext()
 
     useEffect(() => {
         getUsers();
@@ -19,12 +20,10 @@ export default function Users() {
 
         axiosClient.delete(`/users/${u.id}`)
         .then(() => {
-        //todo whow message
-        getUsers();
+            setNotification('User deleted successfully');
+            getUsers();
         })
     }
-
-
 
     const getUsers = () => {
         setLoading(true);
@@ -34,13 +33,12 @@ export default function Users() {
             setUsers(data.data);
         })
         .catch(() => {
-            setLoading(false);
+            setLoading(false); 
         })
     }
 
     return (
-
-        <div className="w-fit">
+        <div>
             <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center" }}>
                 <h1>Users</h1>
                 <Link to={'/users/new'} className="btn-add">Add new</Link>
@@ -52,6 +50,7 @@ export default function Users() {
                             <th>ID</th>
                             <th>Name</th>
                             <th>Email</th>
+                            <th>Permission</th>
                             <th>Create Date</th>
                             <th>Actions</th>
                         </tr>
@@ -70,6 +69,7 @@ export default function Users() {
                                 <td>{u.id}</td>
                                 <td>{u.name}</td>
                                 <td>{u.email}</td>
+                                <td>{u.permission_id.name}</td>
                                 <td>{u.created_at}</td>
                                 <td>
                                     <Link className="btn-edit" to={'/users/' + u.id}>Edit</Link>
