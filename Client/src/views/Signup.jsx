@@ -17,7 +17,7 @@ export default function Signup() {
         const payload = {
             name: nameRef.current.value,
             email: emailRef.current.value,
-            permission_id: 1,
+            permission_id: 2,
             password: passwordRef.current.value,
             password_confirmation: passwordConfirmRef.current.value
         }

@@ -1,16 +1,51 @@
-import { Navigate, Outlet } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, Navigate, Outlet } from "react-router-dom";
+import axiosClient from "../axios-client";
 import { UseStateContext } from "../contexts/ContextProvider";
+import Navbar from "./Navbar";
 
-export default function GuestLayout() {
+export default function DefaultLayout() {
 
-  const {token} = UseStateContext()
-  if (!token) {
-    return <Navigate to="/login" />;
+    const {user, token, setUser, setToken} = UseStateContext()
+    const [loading, setLoading] = useState(true)
+
+    const onLogout = (ev) => {
+        ev.preventDefault()
+        axiosClient.post('/logout')
+        .then(() => {
+            setUser({})
+            setToken(null)
+            Navigate('/login')
+        })
+    }
+    
+    useEffect(() => {
+        axiosClient.get('/user')
+        .then(({data}) => {
+            setUser(data)
+            setLoading(false)
+        })
+    }, [])
+
+    if (!token) {
+        return <Navigate to="/login" />
+    }
+
+    return (
+        <div id="defaultLayout">
+        {loading && <div className="loading">Loading...</div>}
+        <>
+        <div className="content">
+
+            <main className="flex bg-[#312E2B] text-white">
+
+            <a href="#" onClick={onLogout} className=" absolute right-3">Logout</a>
+                <Navbar />
+                <Outlet />
+
+            </main>
+        </div>
+        </>
+      </div>
+    );
   }
-
-  return (
-    <div>
-        <Outlet />
-    </div>
-  );
-}
