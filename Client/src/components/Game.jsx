@@ -440,153 +440,397 @@ const ENDPOINT = ''
                     </React.Fragment>
 
 
+{/* //!--------------------------------------------------------player 1--------------------------------------------------------------- */}
                     {currentUser === 'Player 1'  && <>
-                    <div>
-                    <br />
-                        <h1>This is player 1</h1>
+                     
+                    <h1>This is player 1</h1>
 
-                        <br />
-                        Your cards: {player1Deck.map((item, i) =>(
-                            <p
-                            onClick={turn === 'Player 1' ? () => cardPlayedHandler(item) : undefined}
-                            >Card {i+1}: {item.name}</p>
-                        ))}
+                    <div className=' grid grid-rows-3 grid-flow-col gap-4 w-[70vw]'>
+                    
 
-                        <br /><br />
-                        Player 2 Cards: {player2Deck.map((item, i) =>(
-                            <p>Card {i+1}: Hidden card</p>
-                        ))}
+                        
+                      
 
-                        <br />
-                        Player 3 Cards: {player3Deck.map((item, i) =>(
-                            <p>Card {i+1}: Hidden card</p>
+
+                    <div className='row-span-3 flex flex-col gap-5  '>
+
+                        <div className='flex flex-col gap-[10px] justify-center items-center'>
+
+                                Player 2 Cards: 
+                                
+                                <div className='flex  gap-[20px]'>
+                                    {player2Deck.map((item, i) =>(
+                                        <img
+                                        key={i}
+                                        className="h-[200px]"
+                                        src={(`../bilder/BackSide.png`)}
+                                        />
+                                    ))}
+
+                                </div>
+                        </div>
+
+                        <div className='flex flex-col gap-[10px] justify-center items-center'>
+                                Player 3 Cards: 
+                                
+                                <div className='flex  gap-[20px]'>
+                                    {player3Deck.map((item, i) =>(
+                                        <img
+                                        key={i}
+                                        className="h-[200px]"
+                                        src={(`../bilder/BackSide.png`)}
+                                        />
+                                    ))}
+
+                                </div>
+
+                        </div>
+
+                        <div className='flex flex-col gap-[10px] justify-center items-center '>
+                                Player 4 Cards: 
+                                
+                                <div className='flex  gap-[20px]'>
+                                    {player4Deck.map((item, i) =>(
+                                        <img
+                                        key={i}
+                                        className="h-[200px]"
+                                        src={(`../bilder/BackSide.png`)}
+                                        />
+                                    ))}
+
+                                </div>
+
+                        </div>
+                    </div>
+
+                        <div className='col-span-2 row-span-2 flex flex-col gap-[10px]  items-center  '>
+                            
+                            Played Cards: 
+                            <div className='grid grid-cols-4 gap-[20px] border-[#F2F1E4] border-4 min-w-[500px] max-w-fit h-[400px] p-5 overflow-scroll'>
+                               {playedCardsPile.map((item, i) => (
+                                   <img
+                                   key={i}
+                                   className="h-[200px] "
+                                   src={(`../bilder/${item.name}.png`)}
+                                   />
+                                   ))}
+                              
+                            </div>
+                        </div>
+
+                        <div className='flex flex-col gap-[10px] justify-center items-center  col-span-2 '>
+
+                            Your cards:
+                            <div className='flex  gap-[20px]'>
+                            {player1Deck.map((item, i) => (
+                                <img
+                                    key={i}
+                                    className="h-[200px] border-none hover: border-4 border-black"
+                                    onClick={turn === 'Player 1' ? () => cardPlayedHandler(item) : undefined}
+                                    src={(`../bilder/${item.name}.png`)}
+                                    />
                             ))}
 
-                        <br />
-                        Player 4 Cards: {player4Deck.map((item, i) =>(
-                            <p>Card {i+1}: Hidden card</p>
-                            ))}
-
-                        <br /><br />
-                        Played Cards: {playedCardsPile.map((item, i) => (
-                            <p>Card Pile: {i+1} {item.name}</p>
-                        ))}
+                            </div>
+                        </div>
 
                     </div>
                     </>}
 
+{/* //!--------------------------------------------------------player 2--------------------------------------------------------------- */}
+
                     {currentUser === 'Player 2' && <>
-                    <br />
+                    
                         <h1>This is player 2</h1>
 
-                        <br />
 
-                        Your cards: {player2Deck.map((item, i) =>(
-                            <p
-                            onClick={turn === 'Player 2' ? () => cardPlayedHandler(item) : undefined}
-                            >Card {i+1}: {item.name}
-                            </p>
-                             ))}
+                        <div className=' grid grid-rows-3 grid-flow-col gap-4 w-[70vw]'>
+                    
 
-                        <br /><br />
+                        
+                      
 
-                        Player 1 Cards: {player1Deck.map((item, i) =>(
-                            <p>Card {i+1}: Hidden card</p>
-                        ))}
 
-                        <br />
+                    <div className='row-span-3 flex flex-col gap-5  '>
 
-                        Player 3 Cards: {player3Deck.map((item, i) =>(
-                            <p>Card {i+1}: Hidden card</p>
+                        <div className='flex flex-col gap-[10px] justify-center items-center'>
+
+                                Player 1 Cards: 
+                                
+                                <div className='flex  gap-[20px]'>
+                                    {player1Deck.map((item, i) =>(
+                                        <img
+                                        key={i}
+                                        className="h-[200px]"
+                                        src={(`../bilder/BackSide.png`)}
+                                        />
+                                    ))}
+
+                                </div>
+                        </div>
+
+                        <div className='flex flex-col gap-[10px] justify-center items-center'>
+                                Player 3 Cards: 
+                                
+                                <div className='flex  gap-[20px]'>
+                                    {player3Deck.map((item, i) =>(
+                                        <img
+                                        key={i}
+                                        className="h-[200px]"
+                                        src={(`../bilder/BackSide.png`)}
+                                        />
+                                    ))}
+
+                                </div>
+
+                        </div>
+
+                        <div className='flex flex-col gap-[10px] justify-center items-center '>
+                                Player 4 Cards: 
+                                
+                                <div className='flex  gap-[20px]'>
+                                    {player4Deck.map((item, i) =>(
+                                        <img
+                                        key={i}
+                                        className="h-[200px]"
+                                        src={(`../bilder/BackSide.png`)}
+                                        />
+                                    ))}
+
+                                </div>
+
+                        </div>
+                    </div>
+
+                        <div className='col-span-2 row-span-2 flex flex-col gap-[10px]  items-center  '>
+                            
+                            Played Cards: 
+                            <div className='grid grid-cols-4 gap-[20px] border-[#F2F1E4] border-4 min-w-[500px] max-w-fit h-[400px] p-5 overflow-scroll'>
+                               {playedCardsPile.map((item, i) => (
+                                   <img
+                                   key={i}
+                                   className="h-[200px] "
+                                   src={(`../bilder/${item.name}.png`)}
+                                   />
+                                   ))}
+                              
+                            </div>
+                        </div>
+
+                        <div className='flex flex-col gap-[10px] justify-center items-center  col-span-2 '>
+
+                            Your cards:
+                            <div className='flex  gap-[20px]'>
+                            {player2Deck.map((item, i) => (
+                                <img
+                                    key={i}
+                                    className="h-[200px] border-none hover: border-4 border-black"
+                                    onClick={turn === 'Player 2' ? () => cardPlayedHandler(item) : undefined}
+                                    src={(`../bilder/${item.name}.png`)}
+                                    />
                             ))}
 
-                        <br />
+                            </div>
+                        </div>
 
-                             Player 4 Cards: {player4Deck.map((item, i) =>(
-                            <p>Card {i+1}: Hidden card</p>
-                            ))}
-
-                            <br /><br />
-
-                            Played Cards: {playedCardsPile.map((item, i) => (
-                            <p>Card Pile: {i+1} {item.name}</p>
-                             ))}
+                    </div>
                     </>}
+
+{/* //!--------------------------------------------------------player 3--------------------------------------------------------------- */}
+
 
                     {currentUser === 'Player 3' && <>
-                    <br />
+
                         <h1>This is player 3</h1>
-                        <br />
-                        Your cards: {player3Deck.map((item, i) =>(
-                            <p
-                            onClick={turn === 'Player 3' ? () => cardPlayedHandler(item) : undefined}
-                            >Card {i+1}: {item.name}
-                            </p>
+                        <div className=' grid grid-rows-3 grid-flow-col gap-4 w-[70vw]'>
+                    
+
+                        
+                      
+
+
+                    <div className='row-span-3 flex flex-col gap-5  '>
+
+                        <div className='flex flex-col gap-[10px] justify-center items-center'>
+
+                                Player 1 Cards: 
+                                
+                                <div className='flex  gap-[20px]'>
+                                    {player1Deck.map((item, i) =>(
+                                        <img
+                                        key={i}
+                                        className="h-[200px]"
+                                        src={(`../bilder/BackSide.png`)}
+                                        />
+                                    ))}
+
+                                </div>
+                        </div>
+
+                        <div className='flex flex-col gap-[10px] justify-center items-center'>
+                                Player 2 Cards: 
+                                
+                                <div className='flex  gap-[20px]'>
+                                    {player2Deck.map((item, i) =>(
+                                        <img
+                                        key={i}
+                                        className="h-[200px]"
+                                        src={(`../bilder/BackSide.png`)}
+                                        />
+                                    ))}
+
+                                </div>
+
+                        </div>
+
+                        <div className='flex flex-col gap-[10px] justify-center items-center '>
+                                Player 4 Cards: 
+                                
+                                <div className='flex  gap-[20px]'>
+                                    {player4Deck.map((item, i) =>(
+                                        <img
+                                        key={i}
+                                        className="h-[200px]"
+                                        src={(`../bilder/BackSide.png`)}
+                                        />
+                                    ))}
+
+                                </div>
+
+                        </div>
+                    </div>
+
+                        <div className='col-span-2 row-span-2 flex flex-col gap-[10px]  items-center  '>
+                            
+                            Played Cards: 
+                            <div className='grid grid-cols-4 gap-[20px] border-[#F2F1E4] border-4 min-w-[500px] max-w-fit h-[400px] p-5 overflow-scroll'>
+                               {playedCardsPile.map((item, i) => (
+                                   <img
+                                   key={i}
+                                   className="h-[200px] "
+                                   src={(`../bilder/${item.name}.png`)}
+                                   />
+                                   ))}
+                              
+                            </div>
+                        </div>
+
+                        <div className='flex flex-col gap-[10px] justify-center items-center  col-span-2 '>
+
+                            Your cards:
+                            <div className='flex  gap-[20px]'>
+                            {player3Deck.map((item, i) => (
+                                <img
+                                    key={i}
+                                    className="h-[200px] border-none hover: border-4 border-black"
+                                    onClick={turn === 'Player 3' ? () => cardPlayedHandler(item) : undefined}
+                                    src={(`../bilder/${item.name}.png`)}
+                                    />
                             ))}
 
-                        <br /><br />
+                            </div>
+                        </div>
 
-                        Player 1 Cards: {player1Deck.map((item, i) =>(
-                            <p>Card {i+1}: Hidden card</p>
-                        ))}
-
-                        <br />
-
-                        Player 2 Cards: {player2Deck.map((item, i) =>(
-                            <p>Card {i+1}: Hidden card</p>
-                            ))}
-
-                        <br />
-
-                        Player 4 Cards: {player4Deck.map((item, i) =>(
-                            <p>Card {i+1}: Hidden card</p>
-                            ))}
-
-                        <br  /><br />
-
-                        Played Cards: {playedCardsPile.map((item, i) => (
-                            <p>Card Pile: {i+1} {item.name}</p>
-                        ))}
+                    </div>
 
                     </>}
 
+{/* //!--------------------------------------------------------player 4--------------------------------------------------------------- */}
                     {currentUser === 'Player 4' && <>
-                    <br />
+
                         <h1>This is player 4</h1>
 
-                        <br />
 
-                        Your cards: {player4Deck.map((item, i) =>(
-                            <p
-                            onClick={turn === 'Player 4' ? () => cardPlayedHandler(item) : undefined}
-                            >Card {i+1}: {item.name}
-                            </p>
+                        <div className=' grid grid-rows-3 grid-flow-col gap-4 w-[70vw]'>
+                    
+
+                        
+                      
+
+
+                    <div className='row-span-3 flex flex-col gap-5  '>
+
+                        <div className='flex flex-col gap-[10px] justify-center items-center'>
+
+                                Player 1 Cards: 
+                                
+                                <div className='flex  gap-[20px]'>
+                                    {player1Deck.map((item, i) =>(
+                                        <img
+                                        key={i}
+                                        className="h-[200px]"
+                                        src={(`../bilder/BackSide.png`)}
+                                        />
+                                    ))}
+
+                                </div>
+                        </div>
+
+                        <div className='flex flex-col gap-[10px] justify-center items-center'>
+                                Player 2 Cards: 
+                                
+                                <div className='flex  gap-[20px]'>
+                                    {player2Deck.map((item, i) =>(
+                                        <img
+                                        key={i}
+                                        className="h-[200px]"
+                                        src={(`../bilder/BackSide.png`)}
+                                        />
+                                    ))}
+
+                                </div>
+
+                        </div>
+
+                        <div className='flex flex-col gap-[10px] justify-center items-center '>
+                                Player 3 Cards: 
+                                
+                                <div className='flex  gap-[20px]'>
+                                    {player3Deck.map((item, i) =>(
+                                        <img
+                                        key={i}
+                                        className="h-[200px]"
+                                        src={(`../bilder/BackSide.png`)}
+                                        />
+                                    ))}
+
+                                </div>
+
+                        </div>
+                    </div>
+
+                        <div className='col-span-2 row-span-2 flex flex-col gap-[10px]  items-center  '>
+                            
+                            Played Cards: 
+                            <div className='grid grid-cols-4 gap-[20px] border-[#F2F1E4] border-4 min-w-[500px] max-w-fit h-[400px] p-5 overflow-scroll'>
+                               {playedCardsPile.map((item, i) => (
+                                   <img
+                                   key={i}
+                                   className="h-[200px] "
+                                   src={(`../bilder/${item.name}.png`)}
+                                   />
+                                   ))}
+                                
+                            </div>
+                        </div>
+
+                        <div className='flex flex-col gap-[10px] justify-center items-center  col-span-2 '>
+
+                            Your cards:
+                            <div className='flex  gap-[20px]'>
+                            {player4Deck.map((item, i) => (
+                                <img
+                                    key={i}
+                                    className="h-[200px] border-none hover: border-4 border-black"
+                                    onClick={turn === 'Player 4' ? () => cardPlayedHandler(item) : undefined}
+                                    src={(`../bilder/${item.name}.png`)}
+                                    />
                             ))}
 
-                        <br /><br />
+                            </div>
+                        </div>
 
-                        Player 1 Cards: {player1Deck.map((item, i) =>(
-                            <p>Card {i+1}: Hidden card</p>
-                        ))}
-
-                        <br />
-
-                        Player 2 Cards: {player2Deck.map((item, i) =>(
-                            <p>Card {i+1}: Hidden card</p>
-                            ))}
-
-                        <br />
-
-                        Player 3 Cards: {player3Deck.map((item, i) =>(
-                            <p>Card {i+1}: Hidden card</p>
-                            ))}
-
-
-                        <br /><br />
-
-                        Played Cards: {playedCardsPile.map((item, i) => (
-                            <p>Card Pile: {i+1} {item.name}</p>
-                        ))}
+                    </div>
                     </>}
                 </div>
             )
