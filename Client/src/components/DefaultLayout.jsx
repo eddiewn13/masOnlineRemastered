@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, Navigate, Outlet } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 import axiosClient from "../axios-client";
 import { UseStateContext } from "../contexts/ContextProvider";
 import Navbar from "./Navbar";
@@ -18,7 +18,7 @@ export default function DefaultLayout() {
             Navigate('/login')
         })
     }
-    
+
     useEffect(() => {
         axiosClient.get('/user')
         .then(({data}) => {
@@ -36,7 +36,7 @@ export default function DefaultLayout() {
         {user.permission_id == 2 && <Navigate to="main"/>}
         {user.permission_id == 3 && <Navigate to="main"/>}
         {loading && <div className="loading">Loading...</div>}
-        {!loading && user.permission_id == 1 && 
+        {!loading && user.permission_id == 1 &&
         <>
         <div className="content">
 

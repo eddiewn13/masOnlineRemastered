@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, Navigate, Outlet } from "react-router-dom";
 import axiosClient from "../axios-client";
 import { UseStateContext } from "../contexts/ContextProvider";
-import Navbar from "./Navbar";
+import Navbar from "../components/Navbar"
 
 export default function DefaultLayout() {
 
@@ -34,14 +34,10 @@ export default function DefaultLayout() {
         <div id="defaultLayout">
         <div className="content">
 
-            <main className="flex bg-[#312E2B] text-white">
-
-            <a href="#" onClick={onLogout} className=" absolute right-3">Logout</a>
-                <Navbar />
-                <Outlet />
-
-            </main>
-        </div>
-      </div>
-    );
-  }
+  return (
+    <div>
+        <Navbar />
+        <Outlet />
+    </div>
+  );
+}
