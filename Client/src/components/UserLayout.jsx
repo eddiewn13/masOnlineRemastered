@@ -30,10 +30,6 @@ export default function DefaultLayout() {
         return <Navigate to="/login" />
     }
 
-    return (
-        <div id="defaultLayout">
-        <div className="content">
-
   return (
     <div>
         <Navbar />
