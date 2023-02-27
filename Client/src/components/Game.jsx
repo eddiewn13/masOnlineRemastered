@@ -525,7 +525,7 @@ const ENDPOINT = ''
                             {player1Deck.map((item, i) => (
                                 <img
                                     key={i}
-                                    className="h-[200px] border-none hover: border-4 border-black"
+                                    className="h-[200px] hover:h-[210px] ease-in duration-300 "
                                     onClick={turn === 'Player 1' ? () => cardPlayedHandler(item) : undefined}
                                     src={(`../bilder/${item.name}.png`)}
                                     />
@@ -624,7 +624,7 @@ const ENDPOINT = ''
                             {player2Deck.map((item, i) => (
                                 <img
                                     key={i}
-                                    className="h-[200px] border-none hover: border-4 border-black"
+                                    className="h-[200px] border-none hover:h-[210px] ease-in duration-300"
                                     onClick={turn === 'Player 2' ? () => cardPlayedHandler(item) : undefined}
                                     src={(`../bilder/${item.name}.png`)}
                                     />
@@ -722,7 +722,7 @@ const ENDPOINT = ''
                             {player3Deck.map((item, i) => (
                                 <img
                                     key={i}
-                                    className="h-[200px] border-none hover: border-4 border-black"
+                                    className="h-[200px] border-none hover:h-[210px] ease-in duration-300"
                                     onClick={turn === 'Player 3' ? () => cardPlayedHandler(item) : undefined}
                                     src={(`../bilder/${item.name}.png`)}
                                     />
@@ -813,7 +813,7 @@ const ENDPOINT = ''
                                 
                             </div>
                         </div>
-
+                                    
                         <div className='flex flex-col gap-[10px] justify-center items-center  col-span-2 '>
 
                             Your cards:
@@ -821,7 +821,7 @@ const ENDPOINT = ''
                             {player4Deck.map((item, i) => (
                                 <img
                                     key={i}
-                                    className="h-[200px] border-none hover: border-4 border-black"
+                                    className="h-[200px] border-none hover:h-[210px] ease-in duration-300"
                                     onClick={turn === 'Player 4' ? () => cardPlayedHandler(item) : undefined}
                                     src={(`../bilder/${item.name}.png`)}
                                     />
