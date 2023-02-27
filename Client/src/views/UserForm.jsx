@@ -80,7 +80,7 @@ export default function UserForm() {
             }
             {!loading && 
             
-            <form onSubmit={onSubmit}>
+            <form onSubmit={onSubmit} className="flex flex-col gap 10px text-black">
 
                 <input value={user.name} onChange={ev => setUser({...user, name: ev.target.value})} placeholder="Name" />
                 <input type="email" value={user.email} onChange={ev => setUser({...user, email: ev.target.value})} placeholder="Email" />
