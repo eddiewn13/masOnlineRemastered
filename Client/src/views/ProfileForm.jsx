@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import axiosClient from "../axios-client";
 import { UseStateContext } from "../contexts/ContextProvider";
 
-export default function ProfileForm() {
+export default function UserForm() {
     const {id} = useParams();
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
@@ -13,29 +13,22 @@ export default function ProfileForm() {
         id: null,
         name: '',
         email: '',
+        permission_id: '',
+        all_permissions: [],
+        image_id: '',
+        all_images: [],
         password: '',
         password_confirmation: '',
     })
 
-    
     if (id) {
-
-        useEffect(() => {
-            setLoading(true);
-            axiosClient.get('/user')
-            .then(({data}) => {
-                if (data.id !== id) {
-                    navigate('/profile');
-                }
-            })
-        })
-
         useEffect(() => {
             setLoading(true);
             axiosClient.get(`/users/${id}`)
             .then(({data}) => {
                 setLoading(false)
                 setUser(data)
+                
             })
             .catch(() => {
                 setLoading(false);
@@ -43,7 +36,14 @@ export default function ProfileForm() {
         }, [])
     }
 
+    useEffect(() => {
+        if (typeof user.permission_id === 'object' || typeof user.image_id === 'object') {
+            setUser({...user, permission_id: user.permission_id.id, image_id: user.image_id.id})
+        }
+    }, [user])
+    
     const onSubmit = (ev) => {
+
         ev.preventDefault();
         if (user.id) {
             axiosClient.put(`/users/${user.id}`, user)
@@ -61,7 +61,7 @@ export default function ProfileForm() {
             axiosClient.post(`/users`, user)
             .then(() => {
                 setNotification('User created successfully')
-                navigate('/profile');
+                navigate('/users');
             })
             .catch(err => {
                 const response = err.response;
@@ -71,14 +71,13 @@ export default function ProfileForm() {
             })
         }
     }
-
-
     
     return (
-
-    <>
-        <div className="card animated fadeInDown">
+        
+        <>
         {user.id && <h1>Update User: {user.name}</h1>}
+        {!user.id && <h1>New User</h1>}
+        <div className="card animated fadeInDown">
             {loading && (
                 <div className="text-center">Loading...</div>
             )}
@@ -94,6 +93,13 @@ export default function ProfileForm() {
 
                 <input value={user.name} onChange={ev => setUser({...user, name: ev.target.value})} placeholder="Name" />
                 <input type="email" value={user.email} onChange={ev => setUser({...user, email: ev.target.value})} placeholder="Email" />
+                <select onChange={ev => setUser({...user, image_id: ev.target.value})}>
+                    <option value="">Select Image</option>
+                    {user.all_images.map(image => (
+                    <option value={image.id}>{image.name}</option>
+                    ))}
+                </select>
+
                 <input type="password" onChange={ev => setUser({...user, password: ev.target.value})} placeholder="Password" />
                 <input type="password" onChange={ev => setUser({...user, password_confirmation: ev.target.value})} placeholder="Password Comfirmation" />
                 <button className="btn">Save</button>

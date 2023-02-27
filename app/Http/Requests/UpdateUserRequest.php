@@ -27,7 +27,8 @@ class UpdateUserRequest extends FormRequest
             'name' => 'required|string|max:55',
             'email' => 'required|email|unique:users,email,' . $this->id,
             'password' => 'nullable|string|min:8|confirmed',
-            'permission_id' => 'required|string|'
+            'image_id' => 'nullable|required',
+            'permission_id' => 'nullable|required',
         ];
     }
 }

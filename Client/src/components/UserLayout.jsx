@@ -23,7 +23,6 @@ export default function DefaultLayout() {
         axiosClient.get('/user')
         .then(({data}) => {
             setUser(data)
-            setLoading(false)
         })
     }, [])
 
@@ -33,8 +32,6 @@ export default function DefaultLayout() {
 
     return (
         <div id="defaultLayout">
-        {loading && <div className="loading">Loading...</div>}
-        <>
         <div className="content">
 
             <main className="flex bg-[#312E2B] text-white">
@@ -45,7 +42,6 @@ export default function DefaultLayout() {
 
             </main>
         </div>
-        </>
       </div>
     );
   }
