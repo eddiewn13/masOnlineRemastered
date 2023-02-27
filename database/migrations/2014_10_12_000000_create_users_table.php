@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('password');
             $table->integer('win')->default('0');
             $table->integer('lose')->default('0');
-            $table->unsignedBigInteger('permission_id')->default('1');
+            $table->unsignedBigInteger('permission_id');
             $table->unsignedBigInteger('image_id')->default('1');
             $table->rememberToken();
             $table->timestamps();

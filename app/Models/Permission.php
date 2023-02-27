@@ -13,4 +13,8 @@ class Permission extends Model
     {
         return $this->hasMany(User::class);
     }
+
+    protected $fillable = [
+        'name',
+    ];
 }

@@ -25,6 +25,7 @@ export default function UserForm() {
             .then(({data}) => {
                 setLoading(false)
                 setUser(data)
+                console.log(data);
             })
             .catch(() => {
                 setLoading(false);
@@ -35,6 +36,7 @@ export default function UserForm() {
     const onSubmit = (ev) => {
         ev.preventDefault();
         if (user.id) {
+            console.log(user);
             axiosClient.put(`/users/${user.id}`, user)
             .then(() => {
                 setNotification('User updated successfully')
@@ -82,10 +84,10 @@ export default function UserForm() {
 
                 <input value={user.name} onChange={ev => setUser({...user, name: ev.target.value})} placeholder="Name" />
                 <input type="email" value={user.email} onChange={ev => setUser({...user, email: ev.target.value})} placeholder="Email" />
-                <select id="permission" value={user.permission_id} onChange={ev => setUser({...user, permission_id: document.getElementById('permission').value})} placeholder="Permission">
-                    <option value="1">Admin</option>
-                    <option value="2">User</option>
-                    <option value="3">Premium</option>
+                <select onChange={ev => setUser({...user, permission_id: ev.target.value})} placeholder="Permission">
+                    <option value={1} ><input type="text"/> Admin</option>
+                    <option value={2} ><input type="text"/> User</option>
+                    <option value={3} ><input type="text"/> Premium</option>
                 </select>
                 <input type="password" onChange={ev => setUser({...user, password: ev.target.value})} placeholder="Password" />
                 <input type="password" onChange={ev => setUser({...user, password_confirmation: ev.target.value})} placeholder="Password Comfirmation" />
