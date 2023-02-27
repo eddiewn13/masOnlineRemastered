@@ -14,6 +14,9 @@ export default function UserForm() {
         name: '',
         email: '',
         permission_id: '',
+        all_permissions: [],
+        image_id: '',
+        all_images: [],
         password: '',
         password_confirmation: '',
     })
@@ -25,18 +28,24 @@ export default function UserForm() {
             .then(({data}) => {
                 setLoading(false)
                 setUser(data)
-                console.log(data);
+                
             })
             .catch(() => {
                 setLoading(false);
             })
         }, [])
     }
+
+    useEffect(() => {
+        if (typeof user.permission_id === 'object' || typeof user.image_id === 'object') {
+            setUser({...user, permission_id: user.permission_id.id, image_id: user.image_id.id})
+        }
+    }, [user])
     
     const onSubmit = (ev) => {
+
         ev.preventDefault();
         if (user.id) {
-            console.log(user);
             axiosClient.put(`/users/${user.id}`, user)
             .then(() => {
                 setNotification('User updated successfully')
@@ -84,11 +93,20 @@ export default function UserForm() {
 
                 <input value={user.name} onChange={ev => setUser({...user, name: ev.target.value})} placeholder="Name" />
                 <input type="email" value={user.email} onChange={ev => setUser({...user, email: ev.target.value})} placeholder="Email" />
-                <select onChange={ev => setUser({...user, permission_id: ev.target.value})} placeholder="Permission">
-                    <option value={1} ><input type="text"/> Admin</option>
-                    <option value={2} ><input type="text"/> User</option>
-                    <option value={3} ><input type="text"/> Premium</option>
+                <select onChange={ev => setUser({...user, permission_id: ev.target.value})}>
+                    <option value="">Select Permission</option>
+                    {user.all_permissions.map(permission => (
+                    <option key={permission.id} value={permission.id}>{permission.name}</option>
+                    ))}
                 </select>
+
+                <select onChange={ev => setUser({...user, image_id: ev.target.value})}>
+                    <option value="">Select Image</option>
+                    {user.all_images.map(image => (
+                    <option value={image.id}>{image.name}</option>
+                    ))}
+                </select>
+
                 <input type="password" onChange={ev => setUser({...user, password: ev.target.value})} placeholder="Password" />
                 <input type="password" onChange={ev => setUser({...user, password_confirmation: ev.target.value})} placeholder="Password Comfirmation" />
                 <button className="btn">Save</button>
