@@ -39,6 +39,8 @@ const [player4FlippedCards, setPlayer4FlippedCards ] = useState([]);
 
 const [playedCardsPile, setPlayedCardsPile] = useState([])
 
+const [highestStuns, setHighestStuns] = useState([])
+
 const [stunsPlayers, setStunsPlayers] = useState([])
 
 const[history, setHistory] = useState([])
@@ -48,12 +50,11 @@ const[turn, setTurn] = useState('')
 const [currentValue, setCurrentValue] = useState('')
 
 
-const ENDPOINT = ''
 
 
+// Delar ut alla kort och skapar connection till rummet.
       useEffect(() => {
             const shuffledCards = new DeckClass();
-
 
             const drawCardsPile = shuffledCards.deck;
 
@@ -78,7 +79,7 @@ const ENDPOINT = ''
             })
 
 
-
+            // Skickar gamets start till servern.
             socket.emit('initGameState', {
                     gameOver: false,
                     turn: 'Player 1',
@@ -92,6 +93,7 @@ const ENDPOINT = ''
                     player4Deck: [...player4Deck],
                     player4FlippedCards: [],
                     history: [],
+                    highestStuns: highestStuns,
                     stunsPlayers: [],
                     playedCardsPile: [],
                     drawCardsPile: [...drawCardsPile],
@@ -113,7 +115,7 @@ const ENDPOINT = ''
                 setDrawCardsPile(drawCardsPile)
             })
 
-            socket.on('updateGameState', ({gameOver, winner, turn, count, player1Deck, player1FlippedCards, player2Deck, player2FlippedCards, player3Deck, player3FlippedCards, player4Deck, player4FlippedCards, history, playedCardsPile, stunsPlayers, drawCardsPile, currentValue }) => {
+            socket.on('updateGameState', ({gameOver, winner, turn, count, player1Deck, player1FlippedCards, player2Deck, player2FlippedCards, player3Deck, player3FlippedCards, player4Deck, player4FlippedCards, history, playedCardsPile, highestStuns, stunsPlayers, drawCardsPile, currentValue }) => {
                 gameOver && setGameOver(gameOver)
                 gameOver === true && null
                 winner && setWinner(winner)
@@ -129,6 +131,7 @@ const ENDPOINT = ''
                 player4FlippedCards && setPlayer4FlippedCards(player4FlippedCards)
                 history && setHistory(history)
                 playedCardsPile && setPlayedCardsPile(playedCardsPile)
+                highestStuns && setHighestStuns(highestStuns)
                 stunsPlayers && setStunsPlayers(stunsPlayers)
                 drawCardsPile && setDrawCardsPile(drawCardsPile)
                 currentValue && setCurrentValue(currentValue)
@@ -148,9 +151,10 @@ const ENDPOINT = ''
 
         },[])
 
-
+        // Funktion för att kolla vilka spelare som ska spela i stuns (Funkar ej än)
         const calculateStunsPlayers = (newHistory) => {
             let bigVal = 0;
+
 
             // Calculates highest card in pile
             for (let i = 0; i < newHistory.length; i++) {
@@ -159,10 +163,14 @@ const ENDPOINT = ''
                 }
             }
 
-            // Calculates if two cards are the same
+            // Calculates if there is a stuns
+            let stunsPeople = [];
 
 
+            console.log(newHistory)
 
+
+            // Trying to calculate all players with the same cards
 
 
                 for (let i = 0; i < newHistory.length; i++) {
@@ -179,8 +187,19 @@ const ENDPOINT = ''
 
         }
 
+    }
+
+    function getHighestCard(){
+        for (let i = 0; i < newHistory.length; i++) {
+            if(newHistory[i].card.value == bigVal){
+                bigVal = newHistory[i].card.value
+            }
         }
 
+        return bigVal;
+    }
+
+    // Kollar igenom spelarens hand och kollar om det går att stunsa.
         const checkIfStunsAvailable = (player, playedCard) => {
             if(player == 'Player 1'){
                 for (let i = 0; i < player1Deck.length; i++) {
@@ -251,10 +270,13 @@ const ENDPOINT = ''
 
         }
 
+        //Simpel funktion för att få ett kort
         const drawCard = () => {
             return drawCardsPile.pop();
         }
 
+
+        //Hanterar kortet som "vill" läggas ut (aka kolla om det får läggas och vad som händer efter beroende på vilket kort och vem)
         const cardPlayedHandler = (playedCard) => {
             let newStunsPlayers = [];
             let newCount;
@@ -265,11 +287,9 @@ const ENDPOINT = ''
 
 
                     if(checkIfStunsAvailable(turn, playedCard).stuns){
+
                         if(playedCard === checkIfStunsAvailable(turn,playedCard).card){
 
-                            for (let i = 0; i < history.length; i++) {
-
-                            }
                         }
                         else{
                             alert("You must stuns")
@@ -287,6 +307,7 @@ const ENDPOINT = ''
                         newHistory = [...history, {player: 'Player 1', card: playedCard}]
 
                         socket.emit('updateGameState', {
+                            drawCardsPile: [...drawCardsPile],
                             playedCardsPile: [...playedCardsPile.slice(0, playedCardsPile.length), playedCard, ...playedCardsPile.slice(playedCardsPile.length)],
                             player1Deck: [...newPlayer1Deck],
                             history: [...newHistory],
@@ -328,6 +349,7 @@ const ENDPOINT = ''
                     newHistory = [...history, {player: 'Player 2', card: playedCard}]
                     newCount = count+1;
                     socket.emit('updateGameState', {
+                        drawCardsPile: [...drawCardsPile],
                         playedCardsPile: [...playedCardsPile.slice(0, playedCardsPile.length), playedCard, ...playedCardsPile.slice(playedCardsPile.length)],
                         player2Deck: [...newPlayer2Deck],
                         history: [...newHistory],
@@ -364,6 +386,7 @@ const ENDPOINT = ''
                     newHistory = [...history, {player: 'Player 3', card: playedCard}]
 
                     socket.emit('updateGameState', {
+                        drawCardsPile: [...drawCardsPile],
                         playedCardsPile: [...playedCardsPile.slice(0, playedCardsPile.length), playedCard, ...playedCardsPile.slice(playedCardsPile.length)],
                         player3Deck: [...newPlayer3Deck],
                         history: [...newHistory],
@@ -403,6 +426,7 @@ const ENDPOINT = ''
 
 
                     socket.emit('updateGameState', {
+                        drawCardsPile: [...drawCardsPile],
                         playedCardsPile: [...playedCardsPile.slice(0, playedCardsPile.length), playedCard, ...playedCardsPile.slice(playedCardsPile.length)],
                         player4Deck: [...newPlayer4Deck],
                         history: [...newHistory],
@@ -421,7 +445,7 @@ const ENDPOINT = ''
         }
 
 
-
+    // Om rummet är fullt (aka 4 spelare connected) visa bara en h1 (gör ett lobby rum senare, skulle vara mysigt om vi har tid)
         if(roomFull === true){
             return (
                 <div>
@@ -432,21 +456,20 @@ const ENDPOINT = ''
             return (
 
                 <div>
-                    <React.Fragment>
+                    <>
                     Stuns Players:
                     {stunsPlayers.map((item, i) => (
                             <div>{item}</div>
                     ))}
-                    </React.Fragment>
-
-
+                    </>
                     {currentUser === 'Player 1'  && <>
                     <div>
                     <br />
                         <h1>This is player 1</h1>
 
                         <br />
-                        Your cards: {player1Deck.map((item, i) =>(
+                        Your cards:
+                        {player1Deck.map((item, i) =>(
                             <p
                             onClick={turn === 'Player 1' ? () => cardPlayedHandler(item) : undefined}
                             >Card {i+1}: {item.name}</p>
@@ -591,7 +614,6 @@ const ENDPOINT = ''
                 </div>
             )
         }
-}
-
+    }
 
 export default Game;
