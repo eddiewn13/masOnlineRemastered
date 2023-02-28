@@ -152,24 +152,34 @@ const Game = () => {
     }, [])
 
     // Funktion för att kolla vilka spelare som ska spela i stuns (Funkar ej än)
+
+    // FÖR IMORGON !!!!! Göra så samma object inte kan gå in i arrayen för att inte få duplicates.
     const calculateStunsPlayers = (newHistory) => {
         let stunsPlayers = [];
         let concatArray = [];
 
         for (let i = 0; i < newHistory.length; i++) {
             for (let j = 0; j < newHistory.length; j++) {
-                console.log(newHistory[i].card.value, newHistory[j].card.value)
                 if (newHistory[i].card.value === newHistory[j].card.value) {
                     console.log("here");
                     concatArray.push(newHistory[j])
+
                 }
             }
 
                 if (concatArray.length == 1) {
                     concatArray = []
                 } else {
-                    stunsPlayers = stunsPlayers.concat(concatArray)
-                    concatArray = []
+                    for (let i = 0; i < concatArray.length; i++) {
+                        if (stunsPlayers.includes(concatArray[i])) {
+                            concatArray = []
+
+                        } else{
+                            stunsPlayers = stunsPlayers.concat(concatArray)
+                            concatArray = []
+                        }
+                    }
+
                 }
 
         }
