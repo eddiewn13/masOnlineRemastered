@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { Link, Navigate, Outlet } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 import axiosClient from "../axios-client";
 import { UseStateContext } from "../contexts/ContextProvider";
-import Navbar from "../components/Navbar"
+import Navbar from "./Navbar";
 
 export default function DefaultLayout() {
 
-    const {user, token, setUser, setToken} = UseStateContext()
+  const {user, token, setUser, setToken} = UseStateContext()
     const [loading, setLoading] = useState(true)
 
     const onLogout = (ev) => {
@@ -18,11 +18,11 @@ export default function DefaultLayout() {
             Navigate('/login')
         })
     }
-    
     useEffect(() => {
         axiosClient.get('/user')
         .then(({data}) => {
             setUser(data)
+            setLoading(false)
         })
     }, [])
 
@@ -31,7 +31,9 @@ export default function DefaultLayout() {
     }
 
   return (
-    <div>
+    <div >
+        <a href="#" onClick={onLogout} className=" absolute right-3 text-white text-xl font-bold">Logout</a>
+
         <Navbar />
         <Outlet />
     </div>
