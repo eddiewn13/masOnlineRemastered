@@ -39,11 +39,7 @@ const router = createBrowserRouter( [
                 path: '/users/:id',
                 element: <UserForm key={'userUpdate'}/>
             },
-            {
-                path:'/play',
-                element: <Game />
-            },
-            
+
         ]
     },
     {
@@ -68,6 +64,10 @@ const router = createBrowserRouter( [
         path: '/',
         element: <UserLayout />,
         children: [
+            {
+                path:'/play',
+                element: <Game />
+            },
             {
                 path: '/main',
                 element: <Main />
