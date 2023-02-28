@@ -7,79 +7,78 @@ import { UseStateContext } from "../contexts/ContextProvider";
 import { useEffect } from "react";
 import axiosClient from "../axios-client";
 
-
-
-
 let createCode = roomCreation(5);
 
 export default function Navbar() {
     const [roomCode, setRoomCode] = useState("");
 
-
-
-
     const joinRoom = () => {
-        document.getElementById("gameCode").style.display ="none"
+        document.getElementById("gameCode").style.display = "none";
     };
 
     const createRoom = () => {
-        document.getElementById("gameCode").style.display ="none"
-
+        document.getElementById("gameCode").style.display = "none";
     };
-
 
     const hide = () => {
         let code = document.getElementById("gameCode");
-            if (code.style.display === "flex") {
+        if (code.style.display === "flex") {
             code.style.display = "none";
-            } else {
+        } else {
             code.style.display = "flex";
-            }
+        }
     };
 
     return (
-        <section className="flex  ">
-            <div className="w-fit min-h-screen px-[10px] py-8 bg-[#202020] text-white flex flex-col gap-[120px]">
-                <img
-                    src="../bilder/mas online.png"
-                    alt="img not found"
-                    className="w-[100px] rounded-[20px]"
-                />
+        <section className="flex absolute left-0">
+            <div className="w-fit min-h-screen px-[10px] py-8 bg-[#202020] text-white flex flex-col gap-[120px] ">
+                <Link to={"/dashboard"}>
+                    <img
+                        src="../bilder/mas online.png"
+                        alt="img not found"
+                        className="w-[100px] rounded-[20px]"
+                    />
+                </Link>
                 <div className="flex flex-col justify-center items-center">
                     <ul className="flex flex-col gap-[30px] text-[26px]">
                         <li>
-                              <button
-                              onClick={hide}
-                              >
-                              Play
-                              </button>
+                            <button onClick={hide}>Play</button>
                         </li>
-                        <li>Profil</li>
-                        <li>Guide</li>
-                        <li>Store</li>
+                        <li>
+                            <Link to={"/profile"}>
+                                <button>Profile</button>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to={"/guide"}>
+                                <button>Guide</button>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to={"/store"}>
+                                <button>Store</button>
+                            </Link>
+                        </li>
                     </ul>
                 </div>
 
                 <div className=" flex flex-col justify-center items-center text-[22px] gap-[10px]">
-                    <Link to={'/login'} className="w-full">
-                    <input
-                        type="button"
-                        value="Login"
-                        className="rounded-[15px] bg-[blue] py-[3px] w-full"
-                    />
+                    <Link to={"/login"} className="w-full">
+                        <input
+                            type="button"
+                            value="Login"
+                            className="rounded-[15px] bg-[blue] py-[3px] w-full"
+                        />
                     </Link>
 
-                    <Link to={'/Signup'} className="w-full">
-                    <input
-                        type="button"
-                        value="Sign up"
-                        className="rounded-[15px] bg-[#90EE90] py-[3px] w-full"
-                    />
+                    <Link to={"/Signup"} className="w-full">
+                        <input
+                            type="button"
+                            value="Sign up"
+                            className="rounded-[15px] bg-[#90EE90] py-[3px] w-full"
+                        />
                     </Link>
                 </div>
-
-
-
             </div>
             <div
                 id="gameCode"
@@ -93,7 +92,7 @@ export default function Navbar() {
                         className="text-center w-[50%] rounded-xl text-[26px] text-black"
                         onChange={(event) => {
                             setRoomCode(event.target.value);
-                            onClick={createRoom}
+                            onClick = { createRoom };
                         }}
                     />
                     <Link to={`/play?roomCode=${roomCode}`}>

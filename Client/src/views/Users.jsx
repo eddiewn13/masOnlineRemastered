@@ -38,12 +38,14 @@ export default function Users() {
     }
 
     return (
-        <div>
-            <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center" }}>
-                <h1>Users</h1>
-                <Link to={'/users/new'} className="btn-add">Add new</Link>
+        <section className="h-screen w-screen flex justify-center items-center">
+
+        <div className=" w-fit h-fit  ">
+            <div  className="flex justify-between items-center">
+                <h1 className="">Users</h1>
+                <Link to={'/users/new'} className="font-bold border-2 border-white p-[2px] rounded-lg">Add new</Link>
             </div>
-            <div className="card animated fadeInDown">
+            <div >
                 <table>
                     <thead>
                         <tr>
@@ -83,5 +85,7 @@ export default function Users() {
                 </table>
             </div>
         </div>
+        </section>
+
     )
 }

@@ -298,7 +298,7 @@ const [currentValue, setCurrentValue] = useState('')
                     }
 
 
-                        const removeCard = player1Deck.indexOf(playedCard)
+                       const removeCard = player1Deck.indexOf(playedCard)
 
 
                         let newPlayer1Deck = [...player1Deck.slice(0, removeCard), ...player1Deck.slice(removeCard + 1)]
@@ -448,14 +448,17 @@ const [currentValue, setCurrentValue] = useState('')
     // Om rummet är fullt (aka 4 spelare connected) visa bara en h1 (gör ett lobby rum senare, skulle vara mysigt om vi har tid)
         if(roomFull === true){
             return (
-                <div>
-                    <h1>Room is full</h1>
+                <div className='flex flex-col gap-14 justify-center items-center h-screen w-screen'>
+                    <h1 className='text-[80px] font-bold'>Room is full</h1>
+                    <Link to={'/dashboard'}>
+                        <input type="button" value="Return to home page" className='text-3xl font-bold p-3 bg-[#e64820] rounded-3xl cursor-pointer hover:bg-[#9e341a]' />
+                    </Link>
                 </div>
             )
         } else{
             return (
 
-                <div>
+                <div className='flex flex-col justify-center items-center h-screen w-screen gap-5'>
                     <>
                     Stuns Players:
                     {stunsPlayers.map((item, i) => (
@@ -545,11 +548,11 @@ const [currentValue, setCurrentValue] = useState('')
                         <div className='flex flex-col gap-[10px] justify-center items-center  col-span-2 '>
 
                             Your cards:
-                            <div className='flex  gap-[20px]'>
+                            <div className='flex  gap-[20px] '>
                             {player1Deck.map((item, i) => (
                                 <img
                                     key={i}
-                                    className="h-[200px] hover:h-[210px] ease-in duration-300 "
+                                    className="h-[200px] hover:border-[#eeac31] hover:border-4 hover:rounded-xl ease-in duration-100  cursor-pointer"
                                     onClick={turn === 'Player 1' ? () => cardPlayedHandler(item) : undefined}
                                     src={(`../bilder/${item.name}.png`)}
                                     />
@@ -648,7 +651,7 @@ const [currentValue, setCurrentValue] = useState('')
                             {player2Deck.map((item, i) => (
                                 <img
                                     key={i}
-                                    className="h-[200px] border-none hover:h-[210px] ease-in duration-300"
+                                    className="h-[200px] hover:border-[#eeac31] hover:border-4 hover:rounded-xl ease-in duration-100  cursor-pointer"
                                     onClick={turn === 'Player 2' ? () => cardPlayedHandler(item) : undefined}
                                     src={(`../bilder/${item.name}.png`)}
                                     />
@@ -746,7 +749,7 @@ const [currentValue, setCurrentValue] = useState('')
                             {player3Deck.map((item, i) => (
                                 <img
                                     key={i}
-                                    className="h-[200px] border-none hover:h-[210px] ease-in duration-300"
+                                    className="h-[200px] hover:border-[#eeac31] hover:border-4 hover:rounded-xl ease-in duration-100  cursor-pointer"
                                     onClick={turn === 'Player 3' ? () => cardPlayedHandler(item) : undefined}
                                     src={(`../bilder/${item.name}.png`)}
                                     />
@@ -845,7 +848,7 @@ const [currentValue, setCurrentValue] = useState('')
                             {player4Deck.map((item, i) => (
                                 <img
                                     key={i}
-                                    className="h-[200px] border-none hover:h-[210px] ease-in duration-300"
+                                    className="h-[200px] hover:border-[#eeac31] hover:border-4 hover:rounded-xl ease-in duration-100  cursor-pointer"
                                     onClick={turn === 'Player 4' ? () => cardPlayedHandler(item) : undefined}
                                     src={(`../bilder/${item.name}.png`)}
                                     />

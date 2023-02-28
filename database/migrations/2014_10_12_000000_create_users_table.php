@@ -24,7 +24,7 @@ return new class extends Migration
             $table->unsignedBigInteger('permission_id');
             $table->unsignedBigInteger('image_id')->default('1');
             $table->rememberToken();
-            $table->timestamps();
+            $table->timestamps('begin');
 
             $table->foreign('permission_id')->references('id')->on('permissions')->onDelete('cascade');
             $table->foreign('image_id')->references('id')->on('images')->onDelete('cascade');
