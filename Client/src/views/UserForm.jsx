@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import axiosClient from "../axios-client";
 import { UseStateContext } from "../contexts/ContextProvider";
 
@@ -90,20 +90,20 @@ export default function UserForm() {
             {!loading && 
             
             <form onSubmit={onSubmit} className="flex flex-col gap 10px text-black">
-
+                <Link className="btn-edit" to={'/users'}>Back</Link>
                 <input value={user.name} onChange={ev => setUser({...user, name: ev.target.value})} placeholder="Name" />
                 <input type="email" value={user.email} onChange={ev => setUser({...user, email: ev.target.value})} placeholder="Email" />
                 <select onChange={ev => setUser({...user, permission_id: ev.target.value})}>
-                    <option value="">Select Permission</option>
+                    <option key={id} value="">Select Permission</option>
                     {user.all_permissions.map(permission => (
                     <option key={permission.id} value={permission.id}>{permission.name}</option>
                     ))}
                 </select>
 
                 <select onChange={ev => setUser({...user, image_id: ev.target.value})}>
-                    <option value="">Select Image</option>
+                    <option key={id} value="">Select Image</option>
                     {user.all_images.map(image => (
-                    <option value={image.id}>{image.name}</option>
+                    <option key={image.id} value={image.id}>{image.name}</option>
                     ))}
                 </select>
 

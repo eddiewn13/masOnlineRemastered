@@ -86,7 +86,7 @@ const router = createBrowserRouter( [
                 element: <Store />
             },
             {
-                path: '/profile/:id',
+                path: '/profile/edit/:id',
                 element: <ProfileForm key={'profileUpdate'}/>
             }
         ]
