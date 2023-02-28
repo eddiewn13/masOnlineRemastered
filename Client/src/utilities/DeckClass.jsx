@@ -93,7 +93,7 @@ export default class DeckClass{
             },
             {
                 name: "SixSpade",
-                value: 6, 
+                value: 6,
                 suit: "spade",
             },
             {
@@ -193,7 +193,7 @@ export default class DeckClass{
             },
             {
                 name: "KingDiamond",
-                value: 1,
+                value: 13,
                 suit: "diamond",
             },
             {
@@ -262,7 +262,7 @@ export default class DeckClass{
                 suit: "club",
             },
 
-            
+
         ];
         this.shuffle();
 
@@ -276,7 +276,7 @@ export default class DeckClass{
           let location1 = Math.floor((Math.random() * this.deck.length));
           let location2 = Math.floor((Math.random() * this.deck.length));
           let tmp = this.deck[location1];
-  
+
           this.deck[location1] = this.deck[location2];
           this.deck[location2] = tmp;
       }
@@ -286,6 +286,6 @@ export default class DeckClass{
         return this.deck.pop();
     }
 
-      
-    
+
+
 }
