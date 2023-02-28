@@ -154,13 +154,18 @@ const Game = () => {
     // Funktion för att kolla vilka spelare som ska spela i stuns (Funkar ej än)
 
     const calculateStunsPlayers = (newHistory) => {
+
+        console.log(count)
+
+        // console.log(newHistory)
         let stunsPlayers = [];
         let concatArray = [];
+
+
 
         for (let i = 0; i < newHistory.length; i++) {
             for (let j = 0; j < newHistory.length; j++) {
                 if (newHistory[i].card.value === newHistory[j].card.value) {
-                    console.log("here");
                     concatArray.push(newHistory[j])
 
                 }
@@ -180,6 +185,7 @@ const Game = () => {
                 }
         }
 
+
         if (stunsPlayers.length >= 2) {
 
             console.log("its stuns time baby")
@@ -190,12 +196,73 @@ const Game = () => {
         }else{
 
             console.log("highest card wins")
-            console.log(newHistory)
-            console.log(getHighestCardTwo(newHistory))
 
-            const highestCardWinner = getHighestCardTwo(newHistory)
+            const highestCard = getHighestCardTwo(newHistory)
+
+            let highestCardWinner;
 
             for (let i = 0; i < newHistory.length; i++) {
+                if(newHistory[i].card.value == highestCard){
+                    highestCardWinner = newHistory[i].player
+                }
+            }
+
+            let newCount = 1;
+            switch (highestCardWinner) {
+
+
+
+                case 'Player 1':
+
+                    socket.emit('updateGameState', {
+                        turn: 'Player 1',
+                        player1FlippedCards: [...playedCardsPile],
+                        playedCardsPile: [],
+                        history: [],
+                        count: newCount,
+                    })
+                    console.log(newCount)
+
+
+                console.log("winner is player 1")
+
+                    break;
+                case 'Player 2':
+                    socket.emit('updateGameState', {
+                        turn: 'Player 2',
+                        playerFlippedCards: [...playedCardsPile],
+                        playedCardsPile: [],
+                        history: [],
+                        count: newCount,
+                    })
+                console.log(newCount)
+                console.log("winner is player 2")
+                    break;
+
+                case 'Player 3':
+                    console.log("winner is player 3")
+                    socket.emit('updateGameState', {
+                        turn: 'Player 3',
+                        player3FlippedCards: [...playedCardsPile],
+                        playedCardsPile: [],
+                        history: [],
+                        count: newCount,
+                    })
+                    console.log(newCount)
+                    break;
+
+                case 'Player 4':
+                    console.log("winner is player 4")
+                    socket.emit('updateGameState', {
+                        turn: 'Player 4',
+                        player4FlippedCards: [...playedCardsPile],
+                        playedCardsPile: [],
+                        history: [],
+                        count: newCount,
+                    })
+                    console.log(newCount)
+
+                    break;
 
             }
 
@@ -205,7 +272,6 @@ const Game = () => {
             }
 
         console.log(stunsPlayers)
-        console.log(newHistory)
     }
 
     const getHighestCardTwo = (array) => {
@@ -334,9 +400,10 @@ const Game = () => {
 
     //Hanterar kortet som "vill" läggas ut (aka kolla om det får läggas och vad som händer efter beroende på vilket kort och vem)
     const cardPlayedHandler = (playedCard) => {
-        let newStunsPlayers = [];
-        let newCount;
+        let newCount = count +1;
         let newHistory;
+
+        console.log(playedCard)
         switch (turn) {
 
             case 'Player 1':
@@ -360,7 +427,6 @@ const Game = () => {
 
                 let newPlayer1Deck = [...player1Deck.slice(0, removeCard), ...player1Deck.slice(removeCard + 1)]
                 newPlayer1Deck.push(drawCard())
-                newCount = count + 1
                 newHistory = [...history, { player: 'Player 1', card: playedCard }]
 
 
@@ -375,10 +441,11 @@ const Game = () => {
                     count: newCount,
                 })
 
-
-
-
                 console.log(count)
+
+
+
+                // console.log(count)
 
                 if (count === 4) {
                     calculateStunsPlayers(newHistory)
@@ -405,8 +472,9 @@ const Game = () => {
 
                 let newPlayer2Deck = [...player2Deck.slice(0, removeCard2), ...player2Deck.slice(removeCard2 + 1)]
                 newPlayer2Deck.push(drawCard());
+
                 newHistory = [...history, { player: 'Player 2', card: playedCard }]
-                newCount = count + 1;
+
                 socket.emit('updateGameState', {
                     drawCardsPile: [...drawCardsPile],
                     playedCardsPile: [...playedCardsPile.slice(0, playedCardsPile.length), playedCard, ...playedCardsPile.slice(playedCardsPile.length)],
@@ -414,9 +482,8 @@ const Game = () => {
                     history: [...newHistory],
                     turn: 'Player 3',
                     count: newCount,
-
                 })
-                console.log(newHistory)
+                // console.log(newHistory)
 
                 console.log("Count: " + count)
 
@@ -441,7 +508,6 @@ const Game = () => {
 
                 let newPlayer3Deck = [...player3Deck.slice(0, removeCard3), ...player3Deck.slice(removeCard3 + 1)]
                 newPlayer3Deck.push(drawCard())
-                newCount = count + 1
                 newHistory = [...history, { player: 'Player 3', card: playedCard }]
 
                 socket.emit('updateGameState', {
@@ -452,7 +518,8 @@ const Game = () => {
                     turn: 'Player 4',
                     count: newCount,
                 })
-                console.log(newHistory)
+
+                // console.log(newHistory)
 
                 console.log(count)
 
@@ -460,8 +527,12 @@ const Game = () => {
                     calculateStunsPlayers(newHistory)
                 }
 
+
+
                 break;
             case 'Player 4':
+
+                console.log(history)
 
                 if (checkIfStunsAvailable(turn, playedCard).stuns) {
                     if (playedCard.value === checkIfStunsAvailable(turn, playedCard).card) {
@@ -478,7 +549,7 @@ const Game = () => {
 
                 let newPlayer4Deck = [...player4Deck.slice(0, removeCard4), ...player4Deck.slice(removeCard4 + 1)]
                 newPlayer4Deck.push(drawCard())
-                newCount = count + 1;
+
 
                 newHistory = [...history, { player: 'Player 4', card: playedCard }]
 
@@ -491,11 +562,12 @@ const Game = () => {
                     turn: 'Player 1',
                     count: newCount,
                 })
-                console.log(newHistory)
 
-                console.log(count)
+                // console.log(...newHistory)
+                console.log(newCount)
 
                 if (count === 4) {
+                    console.log(JSON.parse(JSON.stringify(newHistory)))
                     calculateStunsPlayers(newHistory)
                 }
                 break;
@@ -899,7 +971,9 @@ const Game = () => {
                             </div>
                         </div>
 
+
                         <div className='flex flex-col gap-[10px] justify-center items-center  col-span-2 '>
+
 
                             Your cards:
                             <div className='flex  gap-[20px]'>
