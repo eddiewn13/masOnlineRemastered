@@ -33,7 +33,7 @@ export default function Profile() {
                         <h1>Description:</h1>
                     </div>
                 </div>
-                <Link className="text-[24px] font-bold bg-[#90EE90] p-3 rounded-3xl cursor-pointer hover:bg-[#73c073] w-[250px] text-center " to={'/profileForm/' + user.id}>Change profile</Link>
+                <Link className="text-[24px] font-bold bg-[#90EE90] p-3 rounded-3xl cursor-pointer hover:bg-[#73c073] w-[250px] text-center " to={'/profile/' + user.id}>Change profile</Link>
                 {notification && 
                     <div className="notification">
                         {notification}
