@@ -153,7 +153,6 @@ const Game = () => {
 
     // Funktion för att kolla vilka spelare som ska spela i stuns (Funkar ej än)
 
-    // FÖR IMORGON !!!!! Göra så samma object inte kan gå in i arrayen för att inte få duplicates.
     const calculateStunsPlayers = (newHistory) => {
         let stunsPlayers = [];
         let concatArray = [];
@@ -173,22 +172,51 @@ const Game = () => {
                     for (let i = 0; i < concatArray.length; i++) {
                         if (stunsPlayers.includes(concatArray[i])) {
                             concatArray = []
-
                         } else{
                             stunsPlayers = stunsPlayers.concat(concatArray)
                             concatArray = []
                         }
                     }
-
                 }
-
         }
 
+        if (stunsPlayers.length >= 2) {
+
+            console.log("its stuns time baby")
+            let validStuns
+            for (let i = 0; i < stunsPlayers; i++) {
+
+            }
+        }else{
+
+            console.log("highest card wins")
+            console.log(newHistory)
+            console.log(getHighestCardTwo(newHistory))
+
+            const highestCardWinner = getHighestCardTwo(newHistory)
+
+            for (let i = 0; i < newHistory.length; i++) {
+
+            }
+
+                socket.emit('updateGameState', {
+
+                })
+            }
+
         console.log(stunsPlayers)
-
-
         console.log(newHistory)
+    }
 
+    const getHighestCardTwo = (array) => {
+        let bigVal = 0
+        for (let i = 0; i < array.length; i++) {
+            if (array[i].card.value > bigVal) {
+                bigVal = array[i].card.value
+            }
+        }
+
+        return bigVal;
     }
 
     const getHighestCard = (array) => {
