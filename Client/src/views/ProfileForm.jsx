@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import axiosClient from "../axios-client";
 import { UseStateContext } from "../contexts/ContextProvider";
 
@@ -20,6 +20,15 @@ export default function UserForm() {
         password: '',
         password_confirmation: '',
     })
+    const [currentUser, setCurrentUser] = useState({})
+
+    useEffect(() => {
+        axiosClient.get('/user')
+        .then(({data}) => {
+            setCurrentUser(data)
+            console.log(data);
+        })
+    }, [])
 
     if (id) {
         useEffect(() => {
@@ -28,12 +37,16 @@ export default function UserForm() {
             .then(({data}) => {
                 setLoading(false)
                 setUser(data)
-                
             })
             .catch(() => {
                 setLoading(false);
             })
         }, [])
+    }
+    
+    console.log(user);
+    if(user.id !== currentUser.id && user.id !== null){
+        navigate('/main');
     }
 
     useEffect(() => {
@@ -84,19 +97,21 @@ export default function UserForm() {
             {errors && <div className="alert"> 
                 {Object.keys(errors).map(key =>(
                     <p key={key}>{errors[key][0]}</p>
-                ))}
+                    ))}
             </div>
             }
             {!loading && 
             
             <form onSubmit={onSubmit}>
 
+
+                <Link className="btn-edit" to={'/profile'}>Back</Link>
                 <input value={user.name} onChange={ev => setUser({...user, name: ev.target.value})} placeholder="Name" />
                 <input type="email" value={user.email} onChange={ev => setUser({...user, email: ev.target.value})} placeholder="Email" />
                 <select onChange={ev => setUser({...user, image_id: ev.target.value})}>
                     <option value="">Select Image</option>
                     {user.all_images.map(image => (
-                    <option value={image.id}>{image.name}</option>
+                    <option key={image.id} value={image.id}>{image.name}</option>
                     ))}
                 </select>
 
