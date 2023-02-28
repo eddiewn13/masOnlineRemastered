@@ -26,10 +26,6 @@ const router = createBrowserRouter( [
                 element: <Navigate to="/users" />
             },
             {
-                path: '/dashboard',
-                element: <Dashboard />
-            },
-            {
                 path: '/users',
                 element: <Users />
             },
@@ -74,7 +70,11 @@ const router = createBrowserRouter( [
                 element: <Main />
             },
             {
-                path: '/profile',
+                path: '/dashboard',
+                element: <Dashboard />
+            },
+            {
+                path: '/profile/:id',
                 element: <Profile />
             },
             {

@@ -33,8 +33,8 @@ export default function DefaultLayout() {
 
     return (
         <div id="defaultLayout">
-        {user.permission_id == 2 && <Navigate to="main"/>}
-        {user.permission_id == 3 && <Navigate to="main"/>}
+        {user.permission_id == 2 && <Navigate to="dashboard"/>}
+        {user.permission_id == 3 && <Navigate to="dashboard"/>}
         {loading && <div className="loading">Loading...</div>}
         {!loading && user.permission_id == 1 &&
         <>

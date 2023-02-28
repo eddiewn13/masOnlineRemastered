@@ -4,7 +4,9 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Image;
 use App\Models\Permission;
+use Database\Factories\ImageFactory;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -26,7 +28,27 @@ class DatabaseSeeder extends Seeder
             'name' => 'premium',
         ]);
         
-        \App\Models\Image::factory(10)->create();
+        // \App\Models\Image::factory(10)->create();
+
+        Image::factory()->create([
+            'name' => 'NoIcon',
+            'path' => 'NoIcon.png',
+        ]);
+
+        Image::factory()->create([
+            'name' => 'Simon',
+            'path' => 'Simon.jpg',
+        ]);
+
+        Image::factory()->create([
+            'name' => 'Eddie',
+            'path' => 'Eddie.jpg',
+        ]);
+
+        Image::factory()->create([
+            'name' => 'Lucas',
+            'path' => 'Lucas.jpg',
+        ]);
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',

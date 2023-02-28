@@ -46,7 +46,7 @@ export default function UserForm() {
     
     console.log(user);
     if(user.id !== currentUser.id && user.id !== null){
-        navigate('/main');
+        navigate('/dashboard');
     }
 
     useEffect(() => {
@@ -62,7 +62,7 @@ export default function UserForm() {
             axiosClient.put(`/users/${user.id}`, user)
             .then(() => {
                 setNotification('User updated successfully')
-                navigate('/profile');
+                navigate('/profile/' + user.id);
             })
             .catch(err => {
                 const response = err.response;
@@ -74,7 +74,7 @@ export default function UserForm() {
             axiosClient.post(`/users`, user)
             .then(() => {
                 setNotification('User created successfully')
-                navigate('/users');
+                navigate('/profile/' + user.id);
             })
             .catch(err => {
                 const response = err.response;

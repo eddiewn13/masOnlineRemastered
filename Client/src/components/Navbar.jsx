@@ -7,6 +7,7 @@ import { UseStateContext } from "../contexts/ContextProvider";
 import { useEffect } from "react";
 import axiosClient from "../axios-client";
 
+
 let createCode = roomCreation(5);
 
 export default function Navbar() {
@@ -29,6 +30,15 @@ export default function Navbar() {
         }
     };
 
+    const [currentUser, setCurrentUser] = useState({})
+
+    useEffect(() => {
+        axiosClient.get('/user')
+        .then(({data}) => {
+            setCurrentUser(data)
+        })
+    }, [])
+
     return (
         <section className="flex absolute left-0">
             <div className="w-fit min-h-screen px-[10px] py-8 bg-[#202020] text-white flex flex-col gap-[120px] ">
@@ -45,7 +55,7 @@ export default function Navbar() {
                             <button onClick={hide}>Play</button>
                         </li>
                         <li>
-                            <Link to={"/profile"}>
+                            <Link to={"/profile/" + currentUser.id}>
                                 <button>Profile</button>
                             </Link>
                         </li>
