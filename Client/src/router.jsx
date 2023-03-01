@@ -17,6 +17,7 @@ import GuestLayout from './components/GuestLayout.jsx';
 import UserLayout from './components/UserLayout.jsx';
 import Navbar from './components/Navbar.jsx'
 import Game from './components/Game.jsx'
+import UserSearch from './views/UserSearch.jsx';
 
 const router = createBrowserRouter( [
     {
@@ -99,6 +100,10 @@ const router = createBrowserRouter( [
             {
                 path: '/profile/edit/:id',
                 element: <ProfileForm key={'profileUpdate'}/>
+            },
+            {
+                path: 'search',
+                element: <UserSearch />
             }
         ]
     },

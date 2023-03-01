@@ -12,6 +12,8 @@ let createCode = roomCreation(5);
 
 export default function Navbar() {
     const [roomCode, setRoomCode] = useState("");
+    const {user, token, setUser, setToken} = UseStateContext()
+    const [loading, setLoading] = useState(true)
 
     const joinRoom = () => {
         document.getElementById("gameCode").style.display = "none";
@@ -38,6 +40,16 @@ export default function Navbar() {
             setCurrentUser(data)
         })
     }, [])
+
+    const onLogout = (ev) => {
+        ev.preventDefault()
+        axiosClient.post('/logout')
+        .then(() => {
+            setUser({})
+            setToken(null)
+            Navigate('/login')
+        })
+    }
 
     return (
         <section className="flex absolute left-0">
@@ -73,7 +85,7 @@ export default function Navbar() {
                 </div>
 
                 <div className=" flex flex-col justify-center items-center text-[22px] gap-[10px]">
-                    <Link to={"/login"} className="w-full">
+                    {/* <Link to={"/login"} className="w-full">
                         <input
                             type="button"
                             value="Login"
@@ -87,7 +99,16 @@ export default function Navbar() {
                             value="Sign up"
                             className="rounded-[15px] bg-[#90EE90] py-[3px] w-full"
                         />
+                    </Link> */}
+
+                    <Link onClick={onLogout} className="w-full">
+                        <input
+                            type="button"
+                            value="Logout"
+                            className="rounded-[15px] bg-[#a9a9a9] py-[3px] w-full"
+                        />
                     </Link>
+
                 </div>
             </div>
             <div

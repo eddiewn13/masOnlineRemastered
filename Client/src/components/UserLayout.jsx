@@ -35,7 +35,6 @@ export default function DefaultLayout() {
 
             <main className="bg-[#312E2B] text-white">
 
-            <a href="#" onClick={onLogout} className=" absolute right-3 text-white text-xl font-bold">Logout</a>
                 <Navbar />
                 <Outlet />
 
