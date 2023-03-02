@@ -26,7 +26,6 @@ export default function UserForm() {
     useEffect(() => {
         axiosClient.get("/user").then(({ data }) => {
             setCurrentUser(data);
-            console.log(data.description);
         });
     }, []);
 
@@ -61,6 +60,12 @@ export default function UserForm() {
             });
         }
     }, [user]);
+
+    const buttonclick = (ev) => {
+        document.getElementById("pictureScreen").classList.toggle("hidden");
+        setUser({...user, image_id: ev.target.id});
+        console.log(user);
+    };
 
     const onSubmit = (ev) => {
         ev.preventDefault();
@@ -101,16 +106,30 @@ export default function UserForm() {
                 {loading && <div className="text-center">Loading...</div>}
 
                 {!loading && (
+                    <>
+
+                    <div id="pictureScreen" className="fixed top-[25%] w-[38vw] hidden">
+                        <div className="flex rounded-lg shadow bg-[#333333] items-center justify-center">
+                            <div className="grid grid-cols-3 justify-between w-auto gap-[3vw] p-4">
+
+                            {user.all_images.map((image) => (
+                                <img id={image.id} value={image.id} key={image.id} onClick={(ev) => buttonclick(ev)} src={image.path} alt={image.name} className="w-40 rounded-full hover:drop-shadow-lg hover:opacity-75 cursor-pointer" />
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+
+
                     <form
                         onSubmit={onSubmit}
                         className="text-white flex flex-col  w-[40vw] bg-[#202020] py-5 px-5 gap-6"
-                    >
+                        >
                         <Link to={"/profile/" + currentUser.id}>
                             <img
                                 src="\bilder\arrow.png"
                                 alt="<-"
                                 className="text-[50px] text-white w-[50] h-[50px]"
-                            />
+                                />
                         </Link>
 
                         <div className="w-full flex flex-col gap-[5px]">
@@ -122,7 +141,7 @@ export default function UserForm() {
                                 }
                                 placeholder="Name"
                                 className="bg-[#333333] p-[5px] rounded-sm shadow-inner"
-                            />
+                                />
                         </div>
                         <div className="w-full flex flex-col gap-[5px]">
                             <h1>Description</h1>
@@ -133,27 +152,15 @@ export default function UserForm() {
                                 }
                                 placeholder="Description"
                                 className="bg-[#333333] p-[5px] rounded-sm shadow-inner"
-                            />
+                                />
                         </div>
-                        <div className="w-full flex flex-col gap-[5px]">
-                            <h1>Change profile picture</h1>
-                            <select
-                                onChange={(ev) =>
-                                    setUser({
-                                        ...user,
-                                        image_id: ev.target.value,
-                                    })
-                                }
-                                className="bg-[#333333] p-[5px] rounded-sm shadow-inner"
-                            >
-                                <option value="">Select Image</option>
-                                {user.all_images.map((image) => (
-                                    <option key={image.id} value={image.id}>
-                                        {image.name}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
+                        <input 
+                            type="button"
+                            id={user.image_id}
+                            onClick={(ev) => buttonclick(ev)} 
+                            className="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                            value='Change profile picture'
+                        />
                         <div className="w-full flex flex-col gap-[5px]">
                             <h1>Change email</h1>
                             <input
@@ -164,7 +171,7 @@ export default function UserForm() {
                                 }
                                 placeholder="Email"
                                 className="bg-[#333333] p-[5px] rounded-sm shadow-inner"
-                            />
+                                />
                         </div>
                         <div className="w-full flex flex-col gap-[5px]">
                             <h1>Change password</h1>
@@ -178,7 +185,7 @@ export default function UserForm() {
                                 }
                                 placeholder="Password"
                                 className="bg-[#333333] p-[5px] rounded-sm shadow-inner"
-                            />
+                                />
                         </div>
                         <div className="w-full flex flex-col gap-[5px]">
                             <h1>Confirm password</h1>
@@ -192,19 +199,19 @@ export default function UserForm() {
                                 }
                                 placeholder="Password Comfirmation"
                                 className="bg-[#333333] p-[5px] rounded-sm shadow-inner"
-                            />
+                                />
                         </div>
                         <button className="w-1/12 bg-[#90EE90] p-[5px] rounded-md font-semibold hover:bg-[#73c073]">Save</button>
                         {errors && (
                             <div className="text-center text-red-500">
                                 {Object.keys(errors).map((key) => (
                                     <p key={key}>{errors[key][0]}</p>
-                                ))}
+                                    ))}
                             </div>
                         )}
-                        
+
                     </form>
-                    
+                </>    
                 )}
             </div>
         </>

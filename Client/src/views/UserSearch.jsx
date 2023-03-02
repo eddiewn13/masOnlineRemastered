@@ -63,7 +63,7 @@ export default function UserSearch() {
                     <div key={user.id} className="border-white border-4 rounded-xl m-2 ">
                         <Link className="flex" to={'/profile/' + user.id}>
                         <div>
-                            <img src={'../pfp/' + user.image_id.path} alt="image not found" className="w-[250px] h-[250px]" />
+                            <img src={user.image_id.path} alt="image not found" className="w-[250px] h-[250px]" />
                         </div>
                         <div>
                             <div className="flex flex-col h-full justify-between p-10 text-[30px]">
