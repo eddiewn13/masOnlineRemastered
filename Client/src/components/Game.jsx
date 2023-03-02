@@ -151,13 +151,13 @@ const Game = () => {
 
     }, [])
 
-    // Funktion för att kolla vilka spelare som ska spela i stuns (Funkar ej än)
 
+    const stunsBattle = (players) => {
+        // stunsBattleOver = true
+    }
+
+    // Funktion för att kolla vilka spelare som ska spela i stuns
     const calculateStunsPlayers = (newHistory) => {
-
-        console.log(count)
-
-        // console.log(newHistory)
         let stunsPlayers = [];
         let concatArray = [];
 
@@ -185,22 +185,40 @@ const Game = () => {
                 }
         }
 
-
+        // IF = det är stuns gör stuns battle ELSE ge korten till spelaren med högst kort.
         if (stunsPlayers.length >= 2) {
-
             console.log("its stuns time baby")
-            let validStuns
-            for (let i = 0; i < stunsPlayers; i++) {
+            let highestStunsCard = 0;
 
+
+            for (let i = 0; i < stunsPlayers.length; i++) {
+                if (stunsPlayers[i].card.value > highestStunsCard) {
+                    highestStunsCard = stunsPlayers[i].card.value;
+                }
             }
+
+            let highestStunsCardPlayers = [];
+
+            for (let i = 0; i < stunsPlayers.length; i++) {
+                if(stunsPlayers[i].card.value === highestStunsCard){
+                    highestStunsCardPlayers.push(stunsPlayers[i].player)
+                }
+            }
+
+            console.log(highestStunsCardPlayers)
+
+            stunsBattle(highestStunsCardPlayers)
+
         }else{
 
             console.log("highest card wins")
-
+            // Hittar första kortet.
             const highestCard = getHighestCardTwo(newHistory)
 
+            // Deklarerar en variabel för vem som är vinnaren
             let highestCardWinner;
 
+            // Ger highestCardWinner världen av spelaren som hade högsta kortet.
             for (let i = 0; i < newHistory.length; i++) {
                 if(newHistory[i].card.value == highestCard){
                     highestCardWinner = newHistory[i].player
@@ -208,11 +226,9 @@ const Game = () => {
             }
 
             let newCount = 1;
+
+            // En switch som uppdaterar gameState till vem som vann högen.
             switch (highestCardWinner) {
-                
-
-
-
                 case 'Player 1':
 
                     socket.emit('updateGameState', {
@@ -222,7 +238,6 @@ const Game = () => {
                         history: [],
                         count: newCount,
                     })
-                    console.log(newCount)
 
 
                 console.log("winner is player 1")
@@ -236,7 +251,6 @@ const Game = () => {
                         history: [],
                         count: newCount,
                     })
-                console.log(newCount)
                 console.log("winner is player 2")
                     break;
 
@@ -249,7 +263,6 @@ const Game = () => {
                         history: [],
                         count: newCount,
                     })
-                    console.log(newCount)
                     break;
 
                 case 'Player 4':
@@ -261,7 +274,6 @@ const Game = () => {
                         history: [],
                         count: newCount,
                     })
-                    console.log(newCount)
 
                     break;
 
@@ -272,9 +284,10 @@ const Game = () => {
                 })
             }
 
-        console.log(stunsPlayers)
     }
 
+
+    // Fråga inte varför jag har två funktioner för att hitta högsta kortet.
     const getHighestCardTwo = (array) => {
         let bigVal = 0
         for (let i = 0; i < array.length; i++) {
@@ -404,7 +417,6 @@ const Game = () => {
         let newCount = count +1;
         let newHistory;
 
-        console.log(playedCard)
         switch (turn) {
 
             case 'Player 1':
@@ -442,11 +454,9 @@ const Game = () => {
                     count: newCount,
                 })
 
-                console.log(count)
 
 
 
-                // console.log(count)
 
                 if (count === 4) {
                     calculateStunsPlayers(newHistory)
@@ -484,9 +494,7 @@ const Game = () => {
                     turn: 'Player 3',
                     count: newCount,
                 })
-                // console.log(newHistory)
 
-                console.log("Count: " + count)
 
                 if (count === 4) {
                     calculateStunsPlayers(newHistory)
@@ -520,9 +528,6 @@ const Game = () => {
                     count: newCount,
                 })
 
-                // console.log(newHistory)
-
-                console.log(count)
 
                 if (count === 4) {
                     calculateStunsPlayers(newHistory)
@@ -533,7 +538,6 @@ const Game = () => {
                 break;
             case 'Player 4':
 
-                console.log(history)
 
                 if (checkIfStunsAvailable(turn, playedCard).stuns) {
                     if (playedCard.value === checkIfStunsAvailable(turn, playedCard).card) {
@@ -564,11 +568,9 @@ const Game = () => {
                     count: newCount,
                 })
 
-                // console.log(...newHistory)
-                console.log(newCount)
+
 
                 if (count === 4) {
-                    console.log(JSON.parse(JSON.stringify(newHistory)))
                     calculateStunsPlayers(newHistory)
                 }
                 break;

@@ -48,11 +48,11 @@ export default function Profile() {
             <>
             <section className="w-fit h-fit p-[20px] bg-[#202020] flex flex-col gap-3 mt-[40px]">
                 <div className="flex gap-5">
-                    <img src={'../pfp/' + user.image_id.path} alt="image not found" className="w-[250px] h-[250px] border-white border-4 rounded-xl" />
+                    <img src={'../pfp/' + user.image_id.path} alt="image not found" className="w-[250px] h-[250px]" />
                     <div className="flex flex-col justify-between border-white border-4 rounded-xl p-5 text-[30px]">
                         <h1>Username: {user.name}</h1>
                         <h1>Account created: {user.created_at}</h1>
-                        <h1>Description:</h1>
+                        <h1>Description: {user.description}</h1>
                         <h1>User id: {user.id}</h1>
                     </div>
                 </div>

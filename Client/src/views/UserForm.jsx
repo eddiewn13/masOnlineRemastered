@@ -111,6 +111,17 @@ export default function UserForm() {
                             />
                         </div>
                         <div className="w-full flex flex-col gap-[5px]">
+                            <h1>Description</h1>
+                            <input
+                                value={user.description}
+                                onChange={(ev) =>
+                                    setUser({ ...user, description: ev.target.value })
+                                }
+                                placeholder="Description"
+                                className="bg-[#333333] p-[5px] rounded-sm shadow-inner"
+                            />
+                        </div>
+                        <div className="w-full flex flex-col gap-[5px]">
                             <h1>Change profile picture</h1>
                             <select
                                 onChange={(ev) =>
@@ -163,34 +174,6 @@ export default function UserForm() {
                                     setUser({ ...user, email: ev.target.value })
                                 }
                                 placeholder="Email"
-                                className="bg-[#333333] p-[5px] rounded-sm shadow-inner"
-                            />
-                        </div>
-                        <div className="w-full flex flex-col gap-[5px]">
-                            <h1>Change password</h1>
-                            <input
-                                type="password"
-                                onChange={(ev) =>
-                                    setUser({
-                                        ...user,
-                                        password: ev.target.value,
-                                    })
-                                }
-                                placeholder="Password"
-                                className="bg-[#333333] p-[5px] rounded-sm shadow-inner"
-                            />
-                        </div>
-                        <div className="w-full flex flex-col gap-[5px]">
-                            <h1>Confirm password</h1>
-                            <input
-                                type="password"
-                                onChange={(ev) =>
-                                    setUser({
-                                        ...user,
-                                        password_confirmation: ev.target.value,
-                                    })
-                                }
-                                placeholder="Password Comfirmation"
                                 className="bg-[#333333] p-[5px] rounded-sm shadow-inner"
                             />
                         </div>
