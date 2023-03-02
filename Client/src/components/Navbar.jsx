@@ -86,20 +86,20 @@ export default function Navbar() {
 
                 <div className=" flex flex-col justify-center items-center text-[22px] gap-[10px]">
 
-                    <Link onClick={onLogout} className="w-full">
+                    <Link onClick={onLogout} className="w-full ">
                         <input
                             type="button"
                             value="Logout"
-                            className="rounded-[15px] bg-[#a9a9a9] py-[3px] w-full"
+                            className="rounded-[15px] bg-[#a9a9a9] py-[3px] w-full cursor-pointer hover:bg-[#838383]"
                         />
                     </Link>
                     {user.permission_id === 1 && 
                     <>
-                    <Link to={"users"} className="w-full">
+                    <Link to={"users"} className="w-full ">
                         <input
                             type="button"
                             value="Admin"
-                            className="rounded-[15px] bg-[#a81515] py-[3px] w-full"
+                            className="rounded-[15px] bg-[#a81515] py-[3px] w-full cursor-pointer hover:bg-[#911212]"
                         />
                     </Link>
                     </>

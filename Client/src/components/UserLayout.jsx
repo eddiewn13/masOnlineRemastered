@@ -33,7 +33,7 @@ export default function DefaultLayout() {
   return (
         <div className="content">
 
-            <main className="bg-[#312E2B] text-white">
+            <main className="bg-[#312E2B] text-white w-screen h-screen">
 
                 <Navbar />
                 <Outlet />

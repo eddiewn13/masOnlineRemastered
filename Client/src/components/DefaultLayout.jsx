@@ -40,7 +40,7 @@ export default function DefaultLayout() {
         <>
         <div className="content">
 
-            <main className="flex bg-[#312E2B] text-white">
+            <main className="bg-[#312E2B] text-white h-screen w-screen">
 
                 <Navbar />
                 <Outlet />
