@@ -153,16 +153,11 @@ const Game = () => {
 
 
     const stunsBattle = (players) => {
-
-
-
-
-        stunsBattleOver = true
+        // stunsBattleOver = true
     }
 
     // Funktion för att kolla vilka spelare som ska spela i stuns
     const calculateStunsPlayers = (newHistory) => {
-        console.log(count)
         let stunsPlayers = [];
         let concatArray = [];
 
@@ -243,7 +238,6 @@ const Game = () => {
                         history: [],
                         count: newCount,
                     })
-                    console.log(newCount)
 
 
                 console.log("winner is player 1")
@@ -257,7 +251,6 @@ const Game = () => {
                         history: [],
                         count: newCount,
                     })
-                console.log(newCount)
                 console.log("winner is player 2")
                     break;
 
@@ -270,7 +263,6 @@ const Game = () => {
                         history: [],
                         count: newCount,
                     })
-                    console.log(newCount)
                     break;
 
                 case 'Player 4':
@@ -282,7 +274,6 @@ const Game = () => {
                         history: [],
                         count: newCount,
                     })
-                    console.log(newCount)
 
                     break;
 
@@ -293,7 +284,6 @@ const Game = () => {
                 })
             }
 
-        console.log(stunsPlayers)
     }
 
 
@@ -427,7 +417,6 @@ const Game = () => {
         let newCount = count +1;
         let newHistory;
 
-        console.log(playedCard)
         switch (turn) {
 
             case 'Player 1':
@@ -465,11 +454,9 @@ const Game = () => {
                     count: newCount,
                 })
 
-                console.log(count)
 
 
 
-                // console.log(count)
 
                 if (count === 4) {
                     calculateStunsPlayers(newHistory)
@@ -507,9 +494,7 @@ const Game = () => {
                     turn: 'Player 3',
                     count: newCount,
                 })
-                // console.log(newHistory)
 
-                console.log("Count: " + count)
 
                 if (count === 4) {
                     calculateStunsPlayers(newHistory)
@@ -543,9 +528,6 @@ const Game = () => {
                     count: newCount,
                 })
 
-                // console.log(newHistory)
-
-                console.log(count)
 
                 if (count === 4) {
                     calculateStunsPlayers(newHistory)
@@ -556,7 +538,6 @@ const Game = () => {
                 break;
             case 'Player 4':
 
-                console.log(history)
 
                 if (checkIfStunsAvailable(turn, playedCard).stuns) {
                     if (playedCard.value === checkIfStunsAvailable(turn, playedCard).card) {
@@ -587,11 +568,9 @@ const Game = () => {
                     count: newCount,
                 })
 
-                // console.log(...newHistory)
-                console.log(newCount)
+
 
                 if (count === 4) {
-                    console.log(JSON.parse(JSON.stringify(newHistory)))
                     calculateStunsPlayers(newHistory)
                 }
                 break;
