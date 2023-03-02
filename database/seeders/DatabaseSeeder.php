@@ -31,23 +31,28 @@ class DatabaseSeeder extends Seeder
         // \App\Models\Image::factory(10)->create();
 
         Image::factory()->create([
-            'name' => 'NoIcon',
-            'path' => 'NoIcon.png',
+            'name' => 'Anteater',
+            'path' => '\pfp\anteater.png',
         ]);
 
         Image::factory()->create([
-            'name' => 'Simon',
-            'path' => 'Simon.jpg',
+            'name' => 'Dog',
+            'path' => '\pfp\dog.png',
         ]);
 
         Image::factory()->create([
-            'name' => 'Eddie',
-            'path' => 'Eddie.jpg',
+            'name' => 'Lion',
+            'path' => '\pfp\lion.png',
         ]);
 
         Image::factory()->create([
-            'name' => 'Lucas',
-            'path' => 'Lucas.jpg',
+            'name' => 'Rhinoceros',
+            'path' => '\pfp\rhinoceros.png',
+        ]);   
+             
+        Image::factory()->create([
+            'name' => 'Zebra',
+            'path' => '\pfp\zebra.png',
         ]);
 
         // \App\Models\User::factory()->create([
