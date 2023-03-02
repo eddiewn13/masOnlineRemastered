@@ -56,7 +56,7 @@ export default function Navbar() {
             <div className="w-fit min-h-screen px-[10px] py-8 bg-[#202020] text-white flex flex-col gap-[120px] ">
                 <Link to={"/dashboard"}>
                     <img
-                        src="../bilder/mas online.png"
+                        src="\bilder\mas online.png"
                         alt="img not found"
                         className="w-[100px] rounded-[20px]"
                     />
