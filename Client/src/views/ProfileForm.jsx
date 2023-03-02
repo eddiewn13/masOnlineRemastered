@@ -111,7 +111,6 @@ export default function UserForm() {
                     <div id="pictureScreen" className="fixed top-[25%] w-[38vw] hidden">
                         <div className="flex rounded-lg shadow bg-[#333333] items-center justify-center">
                             <div className="grid grid-cols-3 justify-between w-auto gap-[3vw] p-4">
-
                             {user.all_images.map((image) => (
                                 <img id={image.id} value={image.id} key={image.id} onClick={(ev) => buttonclick(ev)} src={image.path} alt={image.name} className="w-40 rounded-full hover:drop-shadow-lg hover:opacity-75 cursor-pointer" />
                                 ))}

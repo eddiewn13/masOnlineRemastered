@@ -5,19 +5,17 @@ import Users from './views/Users.jsx';
 import NotFound from './views/NotFound.jsx';
 import Dashboard from './views/Dashboard.jsx';
 import UserForm from './views/UserForm.jsx';
-import Main from './views/Main.jsx';
 import Guide from './views/Guide.jsx';
 import Profile from './views/Profile.jsx';
 import Store from './views/Store.jsx';
 import ProfileForm from './views/ProfileForm.jsx';
 import PhaseOne from './views/PhaseOne.jsx'
 import PhaseTwo from './views/PhaseTwo.jsx'
+import UserSearch from './views/UserSearch.jsx';
 import DefaultLayout from './components/DefaultLayout.jsx';
 import GuestLayout from './components/GuestLayout.jsx';
 import UserLayout from './components/UserLayout.jsx';
-import Navbar from './components/Navbar.jsx'
 import Game from './components/Game.jsx'
-import UserSearch from './views/UserSearch.jsx';
 
 const router = createBrowserRouter( [
     {
@@ -68,10 +66,6 @@ const router = createBrowserRouter( [
             {
                 path:'/play',
                 element: <Game />
-            },
-            {
-                path: '/main',
-                element: <Main />
             },
             {
                 path: '/dashboard',
