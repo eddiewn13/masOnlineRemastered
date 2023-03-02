@@ -687,7 +687,7 @@ const Game = () => {
                         <div className='col-span-2 row-span-2 flex flex-col gap-[10px]  items-center  '>
 
                             Played Cards:
-                            <div className='grid grid-cols-4 gap-[20px] border-[#F2F1E4] border-4 min-w-[500px] max-w-fit h-[400px] p-5 overflow-scroll'>
+                            <div className='grid grid-cols-4 gap-[20px]  min-w-[500px] max-w-fit h-[400px] p-5 overflow-x-hidden'>
                                 {playedCardsPile.map((item, i) => (
                                     <img
                                         key={i}
@@ -786,7 +786,7 @@ const Game = () => {
                         <div className='col-span-2 row-span-2 flex flex-col gap-[10px]  items-center  '>
 
                             Played Cards:
-                            <div className='grid grid-cols-4 gap-[20px] border-[#F2F1E4] border-4 min-w-[500px] max-w-fit h-[400px] p-5 overflow-scroll'>
+                            <div className='grid grid-cols-4 gap-[20px]  min-w-[500px] max-w-fit h-[400px] p-5 overflow-x-hidden'>
                                 {playedCardsPile.map((item, i) => (
                                     <img
                                         key={i}
@@ -884,7 +884,7 @@ const Game = () => {
                         <div className='col-span-2 row-span-2 flex flex-col gap-[10px]  items-center  '>
 
                             Played Cards:
-                            <div className='grid grid-cols-4 gap-[20px] border-[#F2F1E4] border-4 min-w-[500px] max-w-fit h-[400px] p-5 overflow-scroll'>
+                            <div className='grid grid-cols-4 gap-[20px]  min-w-[500px] max-w-fit h-[400px] p-5 overflow-x-hidden'>
                                 {playedCardsPile.map((item, i) => (
                                     <img
                                         key={i}
@@ -983,7 +983,7 @@ const Game = () => {
                         <div className='col-span-2 row-span-2 flex flex-col gap-[10px]  items-center  '>
 
                             Played Cards:
-                            <div className='grid grid-cols-4 gap-[20px] border-[#F2F1E4] border-4 min-w-[500px] max-w-fit h-[400px] p-5 overflow-scroll'>
+                            <div className='grid grid-cols-4 gap-[20px]  min-w-[500px] max-w-fit h-[400px] p-5 overflow-x-hidden'>
                                 {playedCardsPile.map((item, i) => (
                                     <img
                                         key={i}

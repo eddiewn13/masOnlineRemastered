@@ -12,6 +12,8 @@ let createCode = roomCreation(5);
 
 export default function Navbar() {
     const [roomCode, setRoomCode] = useState("");
+    const {user, token, setUser, setToken} = UseStateContext()
+    const [loading, setLoading] = useState(true)
 
     const joinRoom = () => {
         document.getElementById("gameCode").style.display = "none";
@@ -39,12 +41,22 @@ export default function Navbar() {
         })
     }, [])
 
+    const onLogout = (ev) => {
+        ev.preventDefault()
+        axiosClient.post('/logout')
+        .then(() => {
+            setUser({})
+            setToken(null)
+            Navigate('/login')
+        })
+    }
+
     return (
         <section className="flex absolute left-0">
             <div className="w-fit min-h-screen px-[10px] py-8 bg-[#202020] text-white flex flex-col gap-[120px] ">
                 <Link to={"/dashboard"}>
                     <img
-                        src="../bilder/mas online.png"
+                        src="\bilder\mas online.png"
                         alt="img not found"
                         className="w-[100px] rounded-[20px]"
                     />
@@ -73,26 +85,31 @@ export default function Navbar() {
                 </div>
 
                 <div className=" flex flex-col justify-center items-center text-[22px] gap-[10px]">
-                    <Link to={"/login"} className="w-full">
-                        <input
-                            type="button"
-                            value="Login"
-                            className="rounded-[15px] bg-[blue] py-[3px] w-full"
-                        />
-                    </Link>
 
-                    <Link to={"/Signup"} className="w-full">
+                    <Link onClick={onLogout} className="w-full">
                         <input
                             type="button"
-                            value="Sign up"
-                            className="rounded-[15px] bg-[#90EE90] py-[3px] w-full"
+                            value="Logout"
+                            className="rounded-[15px] bg-[#a9a9a9] py-[3px] w-full"
                         />
                     </Link>
+                    {user.permission_id === 1 && 
+                    <>
+                    <Link to={"users"} className="w-full">
+                        <input
+                            type="button"
+                            value="Admin"
+                            className="rounded-[15px] bg-[#a81515] py-[3px] w-full"
+                        />
+                    </Link>
+                    </>
+                    }
+
                 </div>
             </div>
             <div
                 id="gameCode"
-                className="flex flex-col justify-center items-center bg-[#1C1C1C] text-white  gap-16 text-[40px] w-fit min-h-screen hidden"
+                className="flex-col justify-center items-center bg-[#1C1C1C] text-white  gap-16 text-[40px] w-fit min-h-screen hidden"
             >
                 <div className="flex flex-col justify-center items-center gap-6">
                     <h1 className=""> Enter lobby code</h1>
