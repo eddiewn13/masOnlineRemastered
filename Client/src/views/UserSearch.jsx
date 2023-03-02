@@ -47,7 +47,7 @@ export default function UserSearch() {
 
             <section className="w-fit h-fit p-[20px] bg-[#202020] flex flex-col gap-3 mt-[40px]">
                 <form className="text-center" onSubmit={handleSubmit}>
-                    <input 
+                    <input key={loading} 
                         className="text-black" 
                         placeholder='Search'
                         type="text"
@@ -55,26 +55,25 @@ export default function UserSearch() {
                         onChange={e => handleSearchChange(e.target.value)}
                     />
                 </form>
-            {!loading && <tbody>
+            {!loading && 
+            <>
                 {searchResult.map((user) => (
-                    <div className="border-white border-4 rounded-xl m-2">
-                    <tr key={user.id}>
+                    <div key={user.id} className="border-white border-4 rounded-xl m-2">
                         <Link className="flex" to={'/profile/' + user.id}>
-                        <td>
+                        <div>
                             <img src={'../pfp/' + user.image_id.path} alt="image not found" className="w-[250px] h-[250px]" />
-                        </td>
-                        <td>
+                        </div>
+                        <div>
                             <div className="flex flex-col h-full justify-between p-10 text-[30px]">
                                 <h1>Username: {user.name}</h1>
                                 <h1>Account created: {user.created_at}</h1>
                             </div>
-                        </td>
+                        </div>
                         </Link>
-                    </tr>
                     </div>
                 ))}
-                    </tbody>
-                    }
+            </>
+            }
             </section>
         </div>
         </div>

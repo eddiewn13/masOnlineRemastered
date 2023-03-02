@@ -42,7 +42,7 @@ export default function Users() {
 
         <div className=" w-fit h-fit  ">
             <div  className="flex justify-between items-center">
-                <h1 className="">Users</h1>
+                <h1>Users</h1>
                 <Link to={'/users/new'} className="font-bold border-2 border-white p-[2px] rounded-lg">Add new</Link>
             </div>
             <div >
@@ -67,7 +67,7 @@ export default function Users() {
                     }
                     {!loading && <tbody>
                         {users.map(u => (
-                            <tr key={users}>
+                            <tr key={u.id}>
                                 <td>{u.id}</td>
                                 <td>{u.name}</td>
                                 <td>{u.email}</td>
