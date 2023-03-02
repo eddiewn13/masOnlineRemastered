@@ -22,6 +22,7 @@ class UserResource extends JsonResource
             'name' => $this->name,
             'email' => $this->email,
             'email_verified_at' => $this->email_verified_at,
+            'description' => $this->description,
             'permission_id' => Permission::find($this->permission_id),
             'image_id' => Image::find($this->image_id),
             'all_permissions' => permission::all(),
