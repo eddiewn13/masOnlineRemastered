@@ -154,9 +154,6 @@ const Game = () => {
 
     const stunsBattle = (players) => {
 
-
-
-
         stunsBattleOver = true
     }
 
