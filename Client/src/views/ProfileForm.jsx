@@ -13,6 +13,7 @@ export default function UserForm() {
         id: null,
         name: "",
         email: "",
+        description: "",
         permission_id: "",
         all_permissions: [],
         image_id: "",
@@ -25,7 +26,7 @@ export default function UserForm() {
     useEffect(() => {
         axiosClient.get("/user").then(({ data }) => {
             setCurrentUser(data);
-            console.log(data);
+            console.log(data.description);
         });
     }, []);
 
@@ -44,7 +45,6 @@ export default function UserForm() {
         }, []);
     }
 
-    console.log(user);
     if (user.id !== currentUser.id && user.id !== null) {
         navigate("/dashboard");
     }
@@ -91,6 +91,7 @@ export default function UserForm() {
                     }
                 });
         }
+
     };
 
     return (
@@ -120,6 +121,17 @@ export default function UserForm() {
                                     setUser({ ...user, name: ev.target.value })
                                 }
                                 placeholder="Name"
+                                className="bg-[#333333] p-[5px] rounded-sm shadow-inner"
+                            />
+                        </div>
+                        <div className="w-full flex flex-col gap-[5px]">
+                            <h1>Description</h1>
+                            <input
+                                value={user.description}
+                                onChange={(ev) =>
+                                    setUser({ ...user, description: ev.target.value })
+                                }
+                                placeholder="Description"
                                 className="bg-[#333333] p-[5px] rounded-sm shadow-inner"
                             />
                         </div>
@@ -190,7 +202,9 @@ export default function UserForm() {
                                 ))}
                             </div>
                         )}
+                        
                     </form>
+                    
                 )}
             </div>
         </>
