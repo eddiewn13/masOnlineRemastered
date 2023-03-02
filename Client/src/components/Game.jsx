@@ -209,6 +209,7 @@ const Game = () => {
 
             let newCount = 1;
             switch (highestCardWinner) {
+                
 
 
 
