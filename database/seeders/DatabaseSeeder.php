@@ -55,10 +55,6 @@ class DatabaseSeeder extends Seeder
             'path' => '\pfp\zebra.png',
         ]);
 
-        Image::factory()->create([
-            'name' => 'Zebra',
-            'path' => 'zebra.png',
-        ]);
         
         
 
