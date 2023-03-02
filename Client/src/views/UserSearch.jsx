@@ -45,7 +45,7 @@ export default function UserSearch() {
             {loading && <div className="loading">Loading...</div>}
             <div className="flex flex-col items-center  h-screen bg-[#312E2B] text-white">
 
-            <section className="w-fit h-fit p-[20px] bg-[#202020] flex flex-col gap-3 mt-[40px]">
+            <section className="w-fit h-fit p-[20px] bg-[#202020] flex flex-col gap-3 mt-[40px] max-h-[90vh] ">
                 <form className="text-center" onSubmit={handleSubmit}>
                     <input key={loading} 
                         className="text-black" 
@@ -57,8 +57,10 @@ export default function UserSearch() {
                 </form>
             {!loading && 
             <>
+            <div className="overflow-x-hidden overflow-scroll">
+
                 {searchResult.map((user) => (
-                    <div key={user.id} className="border-white border-4 rounded-xl m-2">
+                    <div key={user.id} className="border-white border-4 rounded-xl m-2 ">
                         <Link className="flex" to={'/profile/' + user.id}>
                         <div>
                             <img src={'../pfp/' + user.image_id.path} alt="image not found" className="w-[250px] h-[250px]" />
@@ -72,6 +74,7 @@ export default function UserSearch() {
                         </Link>
                     </div>
                 ))}
+            </div>
             </>
             }
             </section>
