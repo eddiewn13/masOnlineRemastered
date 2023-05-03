@@ -39,10 +39,12 @@ export default function Navbar() {
 
     const joinRoom = () => {
         document.getElementById("gameCode").style.display = "none";
+        hamburger();
     };
 
     const createRoom = () => {
         document.getElementById("gameCode").style.display = "none";
+        hamburger();
     };
 
     const hide = () => {
@@ -135,7 +137,7 @@ export default function Navbar() {
                                 <input
                                     type="button"
                                     value="Logout"
-                                    className="rounded-[15px] bg-[#a9a9a9] py-[3px] w-full cursor-pointer hover:bg-[#838383] transition-all hover:scale-105"
+                                    className="rounded-[15px] bg-[#a9a9a9] py-[3px] w-full cursor-pointer hover:bg-[#838383] transition-all"
                                 />
                             </Link>
                             {user.permission_id === 1 && (
@@ -144,7 +146,7 @@ export default function Navbar() {
                                         <input
                                             type="button"
                                             value="Admin"
-                                            className="rounded-[15px] bg-[#a81515] py-[3px] w-full cursor-pointer hover:bg-[#911212] transition-all hover:scale-105"
+                                            className="rounded-[15px] bg-[#a81515] py-[3px] w-full cursor-pointer hover:bg-[#911212] transition-all"
                                         />
                                     </Link>
                                 </>
@@ -156,7 +158,7 @@ export default function Navbar() {
                         className="flex-col pt-[250px] items-center bg-[#1C1C1C] text-white  gap-16 text-[40px] w-fit min-h-screen hidden fixed left-[120px] z-50"
                     >
                         <div className="flex flex-col justify-center items-center gap-6">
-                            <label for="id" className="text-3xl">
+                            <label for="id" className="text-3xl text-center">
                                 Enter Lobby Code
                             </label>
                             <input

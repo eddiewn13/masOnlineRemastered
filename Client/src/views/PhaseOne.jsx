@@ -11,20 +11,20 @@ export default function PhaseOne() {
                         <img
                             src="./bilder/arrow.png"
                             alt="<-"
-                            className="text-[50px] w-[50] h-[50px]"
+                            className="text-[50px] w-[50] h-[50px] hover:opacity-60 transition-all hover:scale-105"
                         />
                     </Link>
                     <Link to={"/phaseTwo"}>
-                        <h1 className="text-[28px]">Next</h1>
+                        <h1 className="text-[28px] hover:opacity-60 transition-all hover:scale-105">Next</h1>
                     </Link>
                 </div>
-                <div className="flex justify-center gap-4 w-[60vw] h-[50vh]">
+                <div className="flex justify-center gap-4 w-[60vw] h-[50vh] max-[1500px]:flex-col">
                     <img
                         src="\bilder\phaseOne.PNG"
                         alt="picture of game"
-                        className="h-full border-white border-2"
+                        className="h-[300px] w-[300px] m-auto border-white border-2"
                     />
-                    <p className="max-w-[500px] overflow-scroll overflow-x-hidden">
+                    <p className="max-w-[500px] overflow-scroll overflow-x-hidden max-[1500px]:max-w-full">
                         The first phase of the game can be played in two
                         different ways, with or without pitch. Each stun
                         consists of two cards. This means that if there are more
