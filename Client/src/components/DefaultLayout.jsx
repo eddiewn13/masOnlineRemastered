@@ -40,12 +40,12 @@ export default function DefaultLayout() {
         <>
         <div className="content">
 
-            <main className="bg-[#312E2B] text-white h-screen w-screen">
+            <div className="bg-[#312E2B] text-white h-screen w-screen flex flex-row">
 
                 <Navbar />
                 <Outlet />
 
-            </main>
+            </div>
         </div>
         </>
     }

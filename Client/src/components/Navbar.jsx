@@ -52,8 +52,8 @@ export default function Navbar() {
     }
 
     return (
-        <section className="flex absolute left-0">
-            <div className="w-fit min-h-screen px-[10px] py-8 bg-[#202020] text-white flex flex-col gap-[120px] ">
+        <section>
+            <div className="w-fit min-h-screen px-[10px] py-8 bg-[#202020] text-white flex flex-col gap-[120px] min-w-[120px]">
                 <Link to={"/dashboard"}>
                     <img
                         src="\bilder\mas online.png"
