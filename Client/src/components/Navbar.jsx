@@ -14,13 +14,13 @@ export default function Navbar() {
         UseStateContext();
 
     onload = () => {
-        if (window.innerWidth < 768) {
+        if (window.innerWidth < 865) {
             setShowMenu(false);
         }
     };
 
     addEventListener("resize", () => {
-        if (window.innerWidth < 768) {
+        if (window.innerWidth < 865) {
             setShowMenu(false);
         } else {
             setShowMenu(true);
@@ -28,7 +28,7 @@ export default function Navbar() {
     });
 
     const hamburger = () => {
-        if (window.innerWidth < 768) {
+        if (window.innerWidth < 865) {
         if (showMenu) {
             setShowMenu(false);
         } else {

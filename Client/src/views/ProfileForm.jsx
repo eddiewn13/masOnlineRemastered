@@ -29,6 +29,8 @@ export default function UserForm() {
         });
     }, []);
 
+1
+
     if (id) {
         useEffect(() => {
             setLoading(true);
@@ -64,7 +66,6 @@ export default function UserForm() {
     const buttonclick = (ev) => {
         document.getElementById("pictureScreen").classList.toggle("hidden");
         setUser({ ...user, image_id: ev.target.id });
-        console.log(user);
     };
 
     const onSubmit = (ev) => {
@@ -100,14 +101,14 @@ export default function UserForm() {
 
     return (
         <>
-            <div className="h-screen w-screen flex flex-col mt-[10vh] items-center">
+            <div className="w-screen flex flex-col mt-[10vh] items-center">
                 {loading && <div className="text-center">Loading...</div>}
 
                 {!loading && (
                     <>
                         <div
                             id="pictureScreen"
-                            className="fixed w-[38vw] hidden"
+                            className="fixed min-w-[740px] max-[865px]:min-w-[90vw] hidden"
                         >
                             <div className="flex rounded-lg shadow bg-[#333333] items-center justify-center">
                                 <div className="grid grid-cols-3 justify-between w-auto gap-[3vw] p-4">
@@ -128,19 +129,20 @@ export default function UserForm() {
 
                         <form
                             onSubmit={onSubmit}
-                            className="text-white flex flex-col w-[40vw] bg-[#202020] py-5 px-5 gap-6"
+                            className="text-white flex flex-col min-w-[740px] max-[865px]:min-w-[90vw] bg-[#202020] py-5 px-5 gap-6"
                         >
                             <Link to={"/profile/" + currentUser.id}>
                                 <img
                                     src="\bilder\arrow.png"
                                     alt="<-"
-                                    className="text-[50px] text-white w-[50] h-[50px]"
+                                    className="text-[50px] text-white w-[50] h-[50px] hover:opacity-60 transition-all hover:scale-105"
                                 />
                             </Link>
 
                             <div className="w-full flex flex-col gap-[5px]">
-                                <h1>Change username</h1>
+                                <label for="name">Change username</label>
                                 <input
+                                    id="name"
                                     value={user.name}
                                     onChange={(ev) =>
                                         setUser({
@@ -153,8 +155,9 @@ export default function UserForm() {
                                 />
                             </div>
                             <div className="w-full flex flex-col gap-[5px]">
-                                <h1>Description</h1>
+                                <label for="description">Description</label>
                                 <input
+                                    id="description"
                                     value={user.description}
                                     onChange={(ev) =>
                                         setUser({
@@ -170,12 +173,13 @@ export default function UserForm() {
                                 type="button"
                                 id={user.image_id}
                                 onClick={(ev) => buttonclick(ev)}
-                                className="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                className="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 transition-all"
                                 value="Change profile picture"
                             />
                             <div className="w-full flex flex-col gap-[5px]">
-                                <h1>Change email</h1>
+                                <label for="email">Change email</label>
                                 <input
+                                    id="email"
                                     type="email"
                                     value={user.email}
                                     onChange={(ev) =>
@@ -189,8 +193,9 @@ export default function UserForm() {
                                 />
                             </div>
                             <div className="w-full flex flex-col gap-[5px]">
-                                <h1>Change password</h1>
+                                <label for="password">Change password</label>
                                 <input
+                                    id="password"
                                     type="password"
                                     onChange={(ev) =>
                                         setUser({
@@ -203,8 +208,9 @@ export default function UserForm() {
                                 />
                             </div>
                             <div className="w-full flex flex-col gap-[5px]">
-                                <h1>Confirm password</h1>
+                                <label for="cpassword">Confirm password</label>
                                 <input
+                                    id="cpassword"
                                     type="password"
                                     onChange={(ev) =>
                                         setUser({
@@ -217,7 +223,7 @@ export default function UserForm() {
                                     className="bg-[#333333] p-[5px] rounded-sm shadow-inner"
                                 />
                             </div>
-                            <button className="w-1/12 bg-[#90EE90] p-[5px] rounded-md font-semibold hover:bg-[#73c073]">
+                            <button className="w-20 bg-[#90EE90] p-2 rounded-md font-semibold hover:bg-[#73c073] transition-all">
                                 Save
                             </button>
                             {errors && (

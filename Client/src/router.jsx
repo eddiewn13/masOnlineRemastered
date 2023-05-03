@@ -15,7 +15,6 @@ import PhaseTwo from './views/PhaseTwo.jsx'
 import DefaultLayout from './components/DefaultLayout.jsx';
 import GuestLayout from './components/GuestLayout.jsx';
 import UserLayout from './components/UserLayout.jsx';
-import Navbar from './components/Navbar.jsx'
 import Game from './components/Game.jsx'
 import UserSearch from './views/UserSearch.jsx';
 
