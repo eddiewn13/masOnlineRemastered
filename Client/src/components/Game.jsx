@@ -582,9 +582,9 @@ const Game = () => {
         if(roomFull === true){
             return (
                 <div className='flex flex-col gap-14 justify-center items-center h-screen w-screen'>
-                    <h1 className='text-[80px] font-bold'>Room is full</h1>
+                    <h1 className='text-[80px] font-bold text-center'>Room is full</h1>
                     <Link to={'/dashboard'}>
-                        <input type="button" value="Return to home page" className='text-3xl font-bold p-3 bg-[#e64820] rounded-3xl cursor-pointer hover:bg-[#9e341a]' />
+                        <input type="button" value="Return to home page" className='text-3xl font-bold p-3 bg-[#e64820] rounded-3xl cursor-pointer hover:bg-[#9e341a] transition-all hover:scale-105' />
                     </Link>
                 </div>
             )
@@ -605,7 +605,7 @@ const Game = () => {
 
                     <h1>This is player 1</h1>
 
-                    <div className=' grid grid-rows-3 grid-flow-col gap-4 w-[70vw]'>
+                    <div className='grid grid-rows-3 grid-flow-col gap-4 w-[70vw]'>
 
 
 

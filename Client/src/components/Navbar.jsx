@@ -87,7 +87,7 @@ export default function Navbar() {
             )}
             {showMenu && (
                 <section className="flex max-[768px]:fixed">
-                    <div className="w-fit min-h-screen px-[10px] py-8 bg-[#202020] text-white flex flex-col gap-[120px] min-w-[120px]">
+                    <div className="w-fit min-h-screen px-[10px] py-8 bg-[#202020] text-white flex flex-col gap-[120px] min-w-[120px] z-auto">
                         <Link to={"/dashboard"} onClick={hamburger}>
                             <img
                                 src="\bilder\mas online.png"
