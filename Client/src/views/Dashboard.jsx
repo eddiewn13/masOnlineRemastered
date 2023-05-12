@@ -22,7 +22,7 @@ export default function Dashboard() {
                         <input 
                             type="button" 
                             onClick={hide}
-                            className="text-[60px] font-semibold  bg-[#90EE90] px-14 py-8 rounded-3xl cursor-pointer hover:bg-[#73c073]"
+                            className="text-[60px] font-semibold  bg-[#90EE90] px-14 py-8 rounded-3xl shadow-xl cursor-pointer hover:bg-[#73c073] "
                             value="Play Online"
                             />
                 </div>

@@ -35,7 +35,7 @@ export default function Signup() {
     }
 
     return (
-        <div className="bg-[#312E2B] min-h-screen flex justify-center items-center">
+        <div className=" min-h-screen flex justify-center items-center">
             <div className="bg-[#F2F1E4] py-[20px] px-[30px] rounded-[15px]">
                 <form onSubmit={onSubmit} className="flex flex-col justify-center items-center gap-[30px] text-[22px]">
 

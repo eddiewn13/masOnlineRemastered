@@ -11,7 +11,7 @@ export default function Profile() {
     const [user, setUser] = useState({})
 
     const [currentUser, setCurrentUser] = useState({})
-
+    
     useEffect(() => {
         axiosClient.get('/user')
         .then(({data}) => {
@@ -34,7 +34,7 @@ export default function Profile() {
         
     return (
         
-            <div className="flex flex-col items-center  h-screen bg-[#312E2B] text-white">
+            <div className="flex flex-col items-center">
             {loading && <div className="loading">Loading...</div>}
             {!loading && user.id === undefined &&
             <>
@@ -47,8 +47,8 @@ export default function Profile() {
             }
             {!loading && user.id !== undefined &&
             <>
-            <section className="w-fit h-fit p-[20px] bg-[#202020] flex flex-col gap-8 mt-[40px] rounded-md">
-                <div className="flex gap-5">
+            <section className="w-fit h-fit p-[20px] shadow-xl bg-[#202020] flex flex-col gap-8 mt-[40px] rounded-md">
+                <div className="flex gap-5 border-b-2 pb-[15px]">
                     <img src={'../pfp/' + user.image_id.path} alt="image not found" className="w-[250px] h-[250px] rounded-full border-4" />
                     <div className="flex flex-col justify-between  p-5 text-[30px]">
                         <h1>Username: {user.name}</h1>

@@ -103,9 +103,9 @@ export default function UserForm() {
                 {!loading && (
                     <form
                         onSubmit={onSubmit}
-                        className="text-white flex flex-col  w-[40vw] bg-[#202020] py-5 px-5 gap-6"
+                        className="text-white flex flex-col shadow-xl w-[40vw] bg-[#202020] py-5 px-5 gap-6 rounded-md"
                     >
-                        <Link to={"/profile/" + currentUser.id}>
+                        <Link to={"/profile/" + currentUser.id} className="w-fit">
                             <img
                                 src="\bilder\arrow.png"
                                 alt="<-"

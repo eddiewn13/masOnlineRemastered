@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function PhaseOne() {
     return (
-        <section className="w-screen h-screen bg-[#312E2B] flex flex-col  justify-center items-center text-white">
+        <section className="w-screen h-screen  flex flex-col  justify-center items-center">
             <div className="w-fit flex flex-col gap-[60px] justify-center items-center">
                 <h1 className="text-[70px]">Phase One</h1>
                 <div className="flex items-center justify-between w-full ">
@@ -18,7 +18,7 @@ export default function PhaseOne() {
                         <h1 className="text-[28px]">Next</h1>
                     </Link>
                 </div>
-                <div className="flex justify-center gap-4 w-[60vw] h-[50vh]">
+                <div className="flex justify-center gap-4 w-[60vw] h-[50vh] shadow-xl">
                     <img
                         src="\bilder\phaseOne.PNG"
                         alt="picture of game"
