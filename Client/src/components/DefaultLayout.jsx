@@ -39,13 +39,13 @@ export default function DefaultLayout() {
         {!loading && user.permission_id == 1 &&
         <>
         <div className="content">
-
-            <div className="bg-[#312E2B] text-white h-screen w-screen flex flex-row">
+            
+            <main className="bg-gradient-to-r from-[#312E2B] to-emerald-400 text-white h-screen w-screen">
 
                 <Navbar />
                 <Outlet />
-
-            </div>
+            
+            </main>
         </div>
         </>
     }

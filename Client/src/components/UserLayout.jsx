@@ -25,7 +25,7 @@ export default function DefaultLayout() {
             setLoading(false)
         })
     }, [])
-
+    
     if (!token) {
         return <Navigate to="/login" />
     }
@@ -33,7 +33,7 @@ export default function DefaultLayout() {
   return (
         <div className="content">
 
-            <main className="flex flex-row bg-[#312E2B] text-white w-screen h-screen">
+            <main className="bg-gradient-to-r from-[#202020]  text-white w-screen h-screen">
 
                 <Navbar />
                 <Outlet />

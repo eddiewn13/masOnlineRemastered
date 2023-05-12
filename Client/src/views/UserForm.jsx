@@ -91,7 +91,7 @@ export default function UserForm() {
                         onSubmit={onSubmit}
                         className="text-white flex flex-col  w-[40vw] bg-[#202020] py-5 px-5 gap-6"
                     >
-                        <Link to={"/users"}>
+                        <Link to={"/users"} className="w-fit">
                             <img
                                 src="\bilder\arrow.png"
                                 alt="<-"

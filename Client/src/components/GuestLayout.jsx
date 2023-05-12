@@ -9,7 +9,7 @@ export default function GuestLayout() {
   }
 
   return (
-    <div>
+    <div className="bg-gradient-to-r from-[#312E2B] to-emerald-400">
         <Outlet />
     </div>
   );

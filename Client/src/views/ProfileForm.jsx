@@ -105,26 +105,84 @@ export default function UserForm() {
                 {loading && <div className="text-center">Loading...</div>}
 
                 {!loading && (
-                    <>
-                        <div
-                            id="pictureScreen"
-                            className="fixed min-w-[740px] max-[865px]:min-w-[90vw] hidden"
-                        >
-                            <div className="flex rounded-lg shadow bg-[#333333] items-center justify-center">
-                                <div className="grid grid-cols-3 justify-between w-auto gap-[3vw] p-4">
-                                    {user.all_images.map((image) => (
-                                        <img
-                                            id={image.id}
-                                            value={image.id}
-                                            key={image.id}
-                                            onClick={(ev) => buttonclick(ev)}
-                                            src={image.path}
-                                            alt={image.name}
-                                            className="w-40 rounded-full hover:drop-shadow-lg hover:opacity-75 cursor-pointer transition-all"
-                                        />
-                                    ))}
-                                </div>
-                            </div>
+                    <form
+                        onSubmit={onSubmit}
+                        className="text-white flex flex-col shadow-xl w-[40vw] bg-[#202020] py-5 px-5 gap-6 rounded-md"
+                    >
+                        <Link to={"/profile/" + currentUser.id} className="w-fit">
+                            <img
+                                src="\bilder\arrow.png"
+                                alt="<-"
+                                className="text-[50px] text-white w-[50] h-[50px]"
+                            />
+                        </Link>
+
+                        <div className="w-full flex flex-col gap-[5px]">
+                            <h1>Change username</h1>
+                            <input
+                                value={user.name}
+                                onChange={(ev) =>
+                                    setUser({ ...user, name: ev.target.value })
+                                }
+                                placeholder="Name"
+                                className="bg-[#333333] p-[5px] rounded-sm shadow-inner"
+                            />
+                        </div>
+                        <div className="w-full flex flex-col gap-[5px]">
+                            <h1>Description</h1>
+                            <input
+                                value={user.description}
+                                onChange={(ev) =>
+                                    setUser({ ...user, description: ev.target.value })
+                                }
+                                placeholder="Description"
+                                className="bg-[#333333] p-[5px] rounded-sm shadow-inner"
+                            />
+                        </div>
+                        <div className="w-full flex flex-col gap-[5px]">
+                            <h1>Change profile picture</h1>
+                            <select
+                                onChange={(ev) =>
+                                    setUser({
+                                        ...user,
+                                        image_id: ev.target.value,
+                                    })
+                                }
+                                className="bg-[#333333] p-[5px] rounded-sm shadow-inner"
+                            >
+                                <option value="">Select Image</option>
+                                {user.all_images.map((image) => (
+                                    <option key={image.id} value={image.id}>
+                                        {image.name}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+                        <div className="w-full flex flex-col gap-[5px]">
+                            <h1>Change email</h1>
+                            <input
+                                type="email"
+                                value={user.email}
+                                onChange={(ev) =>
+                                    setUser({ ...user, email: ev.target.value })
+                                }
+                                placeholder="Email"
+                                className="bg-[#333333] p-[5px] rounded-sm shadow-inner"
+                            />
+                        </div>
+                        <div className="w-full flex flex-col gap-[5px]">
+                            <h1>Change password</h1>
+                            <input
+                                type="password"
+                                onChange={(ev) =>
+                                    setUser({
+                                        ...user,
+                                        password: ev.target.value,
+                                    })
+                                }
+                                placeholder="Password"
+                                className="bg-[#333333] p-[5px] rounded-sm shadow-inner"
+                            />
                         </div>
 
                         <form
