@@ -41,6 +41,8 @@ const Game = () => {
 
     const [highestStuns, setHighestStuns] = useState([])
 
+    const [stunsCardPile, setStunsCardPile] = useState([])
+
     const [stunsPlayers, setStunsPlayers] = useState([])
 
     const [history, setHistory] = useState([])
@@ -132,6 +134,7 @@ const Game = () => {
             history && setHistory(history)
             playedCardsPile && setPlayedCardsPile(playedCardsPile)
             highestStuns && setHighestStuns(highestStuns)
+            stunsCardPile && setStunsCardPile(stunsCardPile)
             stunsPlayers && setStunsPlayers(stunsPlayers)
             drawCardsPile && setDrawCardsPile(drawCardsPile)
             currentValue && setCurrentValue(currentValue)
@@ -152,8 +155,23 @@ const Game = () => {
     }, [])
 
 
+
+// PÅBÖRJA DENNA NU
     const stunsBattle = (players) => {
-        // stunsBattleOver = true
+
+console.log(players)
+
+        switch (player) {
+            case value:
+
+                break;
+
+            default:
+                break;
+        }
+
+
+
     }
 
     // Funktion för att kolla vilka spelare som ska spela i stuns
@@ -205,9 +223,10 @@ const Game = () => {
                 }
             }
 
-            console.log(highestStunsCardPlayers)
-
-            stunsBattle(highestStunsCardPlayers)
+            socket.emit('updateGameState', {
+                highestStuns:  [...highestStunsCardPlayers],
+                turn: highestStunsCardPlayers[0],
+            })
 
         }else{
 
@@ -279,9 +298,7 @@ const Game = () => {
 
             }
 
-                socket.emit('updateGameState', {
 
-                })
             }
 
     }
@@ -417,9 +434,20 @@ const Game = () => {
         let newCount = count +1;
         let newHistory;
 
+
+
+
         switch (turn) {
 
             case 'Player 1':
+
+                if(highestStuns.length >= 1){
+
+                    stunsBattle(highestStuns);
+
+                }
+                else{
+
 
 
                 if (checkIfStunsAvailable(turn, playedCard).stuns) {
@@ -462,8 +490,18 @@ const Game = () => {
                     calculateStunsPlayers(newHistory)
                 }
                 break;
-
+            }
             case 'Player 2':
+
+                if(highestStuns.length >= 1){
+
+                    stunsBattle(highestStuns);
+
+
+                }
+                else{
+
+
                 const removeCard2 = player2Deck.indexOf(playedCard)
 
 
@@ -501,7 +539,15 @@ const Game = () => {
                 }
 
                 break;
+            }
             case 'Player 3':
+
+                if(highestStuns.length >= 1){
+
+                    stunsBattle(highestStuns);
+
+                }
+                else{
 
 
                 if (checkIfStunsAvailable(turn, playedCard).stuns) {
@@ -536,8 +582,14 @@ const Game = () => {
 
 
                 break;
+            }
             case 'Player 4':
+                if(highestStuns.length >= 1){
 
+                    stunsBattle(highestStuns);
+
+                }
+                else{
 
                 if (checkIfStunsAvailable(turn, playedCard).stuns) {
                     if (playedCard.value === checkIfStunsAvailable(turn, playedCard).card) {
@@ -574,6 +626,7 @@ const Game = () => {
                     calculateStunsPlayers(newHistory)
                 }
                 break;
+            }
         }
     }
 
