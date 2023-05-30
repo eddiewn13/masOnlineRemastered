@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('description')->default('No description');
             $table->unsignedBigInteger('permission_id');
             $table->unsignedBigInteger('image_id')->default('1');
+            $table->string('reset_code')->nullable();
             $table->rememberToken();
             $table->timestamps();
 

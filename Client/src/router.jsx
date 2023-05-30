@@ -18,6 +18,7 @@ import UserLayout from './components/UserLayout.jsx';
 import Game from './components/Game.jsx'
 import UserSearch from './views/UserSearch.jsx';
 import Reset from './views/Reset.jsx';
+import Resetcode from './views/Resetcode.jsx';
 
 const router = createBrowserRouter( [
     {
@@ -58,6 +59,10 @@ const router = createBrowserRouter( [
             {
                 path: '/reset',
                 element: <Reset />
+            },
+            {
+                path: '/resetcode',
+                element: <Resetcode />
             }
         ]
     },
