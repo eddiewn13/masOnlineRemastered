@@ -156,18 +156,175 @@ const Game = () => {
 
 
 
-// PÅBÖRJA DENNA NU
-    const stunsBattle = (players) => {
+    // I stuns måste jag lägga till så att stunshögen resettas samt att stunskorten läggs in i spelarens flippade kort
 
-console.log(players)
+    const stunsBattle = (players, player, playedCard) => {
 
-        switch (player) {
-            case value:
+        console.log(players)
+        switch(player){
+            case 'Player 1':
 
-                break;
 
-            default:
-                break;
+                if(true){
+
+
+                const removeCard = player1Deck.indexOf(playedCard)
+
+                let newPlayer1Deck = [...player1Deck.slice(0, removeCard), ...player1Deck.slice(removeCard + 1)]
+                newPlayer1Deck.push(drawCard())
+
+                console.log(players)
+
+
+                    players.shift();
+
+                    console.log(players)
+
+                    if(players.length === 0){
+                        calculateStunsPlayers(stunsCardPile);
+
+                        break;
+
+                    }
+
+                let nextTurn = players[0]
+
+                console.log("im in")
+
+                    socket.emit('updateGameState', {
+                        drawCardsPile: [...drawCardsPile],
+                        player1Deck: [...newPlayer1Deck],
+                        turn: nextTurn,
+                        stunsCardPile: [...stunsCardPile.slice(0, stunsCardPile.length), playedCard, ...stunsCardPile.slice(stunsCardPile.length)],
+                    })
+                }
+
+                console.log(stunsCardPile)
+
+            break;
+            case 'Player 2':
+
+
+
+                if(true){
+
+
+                    const removeCard = player2Deck.indexOf(playedCard)
+
+                    let newPlayer2Deck = [...player2Deck.slice(0, removeCard), ...player2Deck.slice(removeCard + 1)]
+                    newPlayer2Deck.push(drawCard())
+
+                    console.log(players)
+
+
+                        players.shift();
+
+                        console.log(players)
+
+                        if(players.length === 0){
+                            calculateStunsPlayers(stunsCardPile);
+                            break;
+
+                        }
+
+                    let nextTurn = players[0]
+
+                    console.log("im in")
+
+                        socket.emit('updateGameState', {
+                            drawCardsPile: [...drawCardsPile],
+                            player2Deck: [...newPlayer2Deck],
+                            turn: nextTurn,
+                            stunsCardPile: [...stunsCardPile.slice(0, stunsCardPile.length), playedCard, ...stunsCardPile.slice(stunsCardPile.length)],
+                        })
+                    }
+
+                    console.log(stunsCardPile)
+
+
+            break;
+            case 'Player 3':
+
+
+                if(true){
+
+
+                    const removeCard = player3Deck.indexOf(playedCard)
+
+                    let newPlayer3Deck = [...player3Deck.slice(0, removeCard), ...player3Deck.slice(removeCard + 1)]
+                    newPlayer3Deck.push(drawCard())
+
+                    console.log(players)
+
+
+                        players.shift();
+
+                        console.log(players)
+
+                        if(players.length === 0){
+                            calculateStunsPlayers(stunsCardPile);
+
+                            break;
+
+                        }
+
+                    let nextTurn = players[0]
+
+                    console.log("im in")
+
+                        socket.emit('updateGameState', {
+                            drawCardsPile: [...drawCardsPile],
+                            player3Deck: [...newPlayer3Deck],
+                            turn: nextTurn,
+                            stunsCardPile: [...stunsCardPile.slice(0, stunsCardPile.length), playedCard, ...stunsCardPile.slice(stunsCardPile.length)],
+                        })
+                    }
+
+                    console.log(stunsCardPile)
+
+            break;
+            case 'Player 4':
+
+
+                if(true){
+
+
+                    const removeCard = player4Deck.indexOf(playedCard)
+
+                    let newPlayer4Deck = [...player4Deck.slice(0, removeCard), ...player4Deck.slice(removeCard + 1)]
+                    newPlayer4Deck.push(drawCard())
+
+                    console.log(players)
+
+
+                        players.shift();
+
+                        console.log(players)
+
+                        if(players.length === 0){
+                            calculateStunsPlayers(stunsCardPile);
+
+                            break;
+
+                        }
+
+                    let nextTurn = players[0]
+
+                    console.log("im in")
+
+                        socket.emit('updateGameState', {
+                            drawCardsPile: [...drawCardsPile],
+                            player4Deck: [...newPlayer4Deck],
+                            turn: nextTurn,
+                            stunsCardPile: [...stunsCardPile.slice(0, stunsCardPile.length), playedCard, ...stunsCardPile.slice(stunsCardPile.length)],
+                        })
+                    }
+
+                    console.log(stunsCardPile)
+
+
+
+            break;
         }
 
 
@@ -252,47 +409,57 @@ console.log(players)
 
                     socket.emit('updateGameState', {
                         turn: 'Player 1',
-                        player1FlippedCards: [...playedCardsPile],
+                        player1FlippedCards: [...playedCardsPile, ...stunsCardPile],
                         playedCardsPile: [],
+                        stunsCardPile: [],
                         history: [],
                         count: newCount,
                     })
 
 
                 console.log("winner is player 1")
+                console.log(player1FlippedCards)
 
                     break;
                 case 'Player 2':
                     socket.emit('updateGameState', {
                         turn: 'Player 2',
-                        playerFlippedCards: [...playedCardsPile],
+                        player2FlippedCards: [...playedCardsPile, ...stunsCardPile],
                         playedCardsPile: [],
+                        stunsCardPile: [],
                         history: [],
                         count: newCount,
                     })
-                console.log("winner is player 2")
+                    console.log("winner is player 2")
+
+                    console.log(player2FlippedCards);
                     break;
 
                 case 'Player 3':
                     console.log("winner is player 3")
                     socket.emit('updateGameState', {
                         turn: 'Player 3',
-                        player3FlippedCards: [...playedCardsPile],
+                        player3FlippedCards: [...playedCardsPile, ...stunsCardPile],
                         playedCardsPile: [],
+                        stunsCardPile: [],
                         history: [],
                         count: newCount,
                     })
+                    console.log("winner is player 3")
+
                     break;
 
                 case 'Player 4':
                     console.log("winner is player 4")
                     socket.emit('updateGameState', {
                         turn: 'Player 4',
-                        player4FlippedCards: [...playedCardsPile],
+                        player4FlippedCards: [...playedCardsPile, ...stunsCardPile],
                         playedCardsPile: [],
+                        stunsCardPile: [],
                         history: [],
                         count: newCount,
                     })
+                    console.log("winner is player 4")
 
                     break;
 
@@ -443,8 +610,9 @@ console.log(players)
 
                 if(highestStuns.length >= 1){
 
-                    stunsBattle(highestStuns);
+                    stunsBattle(highestStuns, 'Player 1', playedCard);
 
+                    break;
                 }
                 else{
 
@@ -495,8 +663,9 @@ console.log(players)
 
                 if(highestStuns.length >= 1){
 
-                    stunsBattle(highestStuns);
+                    stunsBattle(highestStuns, 'Player 2');
 
+                    break;
 
                 }
                 else{
@@ -544,8 +713,9 @@ console.log(players)
 
                 if(highestStuns.length >= 1){
 
-                    stunsBattle(highestStuns);
+                    stunsBattle(highestStuns, 'Player 3');
 
+                    break;
                 }
                 else{
 
@@ -586,8 +756,9 @@ console.log(players)
             case 'Player 4':
                 if(highestStuns.length >= 1){
 
-                    stunsBattle(highestStuns);
+                    stunsBattle(highestStuns, 'Player 4');
 
+                    break;
                 }
                 else{
 
