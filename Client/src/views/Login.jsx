@@ -89,6 +89,15 @@ export default function Login() {
                             Create an account
                         </Link>
                     </span>
+                    <span className="message">
+                        Forgot Password?{" "}
+                        <Link
+                            to="/reset"
+                            className="text-black hover:text-blue-600 transition-all"
+                        >
+                            Reset Password
+                        </Link>
+                    </span>
                 </form>
             </div>
         </div>

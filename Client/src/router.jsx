@@ -17,6 +17,7 @@ import GuestLayout from './components/GuestLayout.jsx';
 import UserLayout from './components/UserLayout.jsx';
 import Game from './components/Game.jsx'
 import UserSearch from './views/UserSearch.jsx';
+import Reset from './views/Reset.jsx';
 
 const router = createBrowserRouter( [
     {
@@ -54,6 +55,10 @@ const router = createBrowserRouter( [
                 path: '/signup',
                 element: <Signup />
             },
+            {
+                path: '/reset',
+                element: <Reset />
+            }
         ]
     },
     {
