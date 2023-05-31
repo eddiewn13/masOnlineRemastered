@@ -56,6 +56,9 @@ class AuthController extends Controller
 
     public function reset(Request $request)
     {
+        if(!user::where('email', $request->email)->exists()){
+            return response()->json(['error' => 'Invalid email'], 400);
+        }
         $email = $request->email;
         $resetCode = rand(100000, 999999);
         while (user::where('reset_code', $resetCode)->exists()) {
@@ -100,6 +103,10 @@ class AuthController extends Controller
     }
 
     public function newpassword(Request $request){
+        $request->validate([
+            'password' => 'min:8',
+        ]);
+
         $user = User::where('id', $request->userid)->first();
         if ($user) {
             $user->password = bcrypt($request->password);

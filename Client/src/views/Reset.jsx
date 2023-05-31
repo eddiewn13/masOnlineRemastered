@@ -6,7 +6,6 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 export default function Reset() {
     const emailRef = useRef();
     const [errors, setErrors] = useState(null);
-    const { setUser, setToken } = UseStateContext();
     const navigate = useNavigate();
 
     const onSubmit = (ev) => {
@@ -37,7 +36,7 @@ export default function Reset() {
                         Email
                     </label>
                     <input
-                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        className="shadow appearance-none border-2 border-black rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         id="email"
                         ref={emailRef}
                         type="text"
