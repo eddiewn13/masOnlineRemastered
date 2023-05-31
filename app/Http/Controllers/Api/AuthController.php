@@ -25,6 +25,30 @@ class AuthController extends Controller
 
         $token = $user->createToken('main')->plainTextToken;
 
+        require '../vendor/autoload.php';
+        $mj = new \Mailjet\Client('b946868388a80c3596f6cfd72a669fa8', '7707c820d239b0cf7d2bec8c4ba04b48', true, ['version' => 'v3.1']);
+        $body = [
+            'Messages' => [
+                [
+                    'From' => [
+                        'Email' => 'simon.myrvold@elev.ga.ntig.se',
+                        'Name' => 'Simon',
+                    ],
+                    'To' => [
+                        [
+                            'Email' => $data['email'],
+                            'Name' => 'User',
+                        ],
+                    ],
+                    'Subject' => 'Reset password',
+                    'TextPart' => '',
+                    'HTMLPart' => '<h3>Hello, </h3><br />Hello thanks for signing up to MasOnline!',
+                    'CustomID' => 'AppGettingStartedTest',
+                ],
+            ],
+        ];
+        $response = $mj->post(Resources::$Email, ['body' => $body]);
+
         return response(compact('user', 'token'));
     }
 
