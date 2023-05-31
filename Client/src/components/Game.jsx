@@ -117,7 +117,7 @@ const Game = () => {
             setDrawCardsPile(drawCardsPile)
         })
 
-        socket.on('updateGameState', ({ gameOver, winner, turn, count, player1Deck, player1FlippedCards, player2Deck, player2FlippedCards, player3Deck, player3FlippedCards, player4Deck, player4FlippedCards, history, playedCardsPile, highestStuns, stunsPlayers, drawCardsPile, currentValue }) => {
+        socket.on('updateGameState', ({ gameOver, winner, turn, count, player1Deck, player1FlippedCards, player2Deck, player2FlippedCards, player3Deck, player3FlippedCards, player4Deck, player4FlippedCards, history, playedCardsPile, highestStuns, stunsPlayers, stunsCardPile, drawCardsPile, currentValue }) => {
             gameOver && setGameOver(gameOver)
             gameOver === true && null
             winner && setWinner(winner)
@@ -155,9 +155,6 @@ const Game = () => {
     }, [])
 
 
-
-    // I stuns måste jag lägga till så att stunshögen resettas samt att stunskorten läggs in i spelarens flippade kort
-
     const stunsBattle = (players, player, playedCard) => {
 
         console.log(players)
@@ -173,6 +170,9 @@ const Game = () => {
                 let newPlayer1Deck = [...player1Deck.slice(0, removeCard), ...player1Deck.slice(removeCard + 1)]
                 newPlayer1Deck.push(drawCard())
 
+                console.log(playedCard)
+                console.log(removeCard)
+
                 console.log(players)
 
 
@@ -183,10 +183,7 @@ const Game = () => {
                     if(players.length === 0){
                         calculateStunsPlayers(stunsCardPile);
 
-                        break;
-
-                    }
-
+                    } else{
                 let nextTurn = players[0]
 
                 console.log("im in")
@@ -201,7 +198,9 @@ const Game = () => {
 
                 console.log(stunsCardPile)
 
+            }
             break;
+
             case 'Player 2':
 
 
@@ -223,9 +222,9 @@ const Game = () => {
 
                         if(players.length === 0){
                             calculateStunsPlayers(stunsCardPile);
-                            break;
+                        }else{
 
-                        }
+
 
                     let nextTurn = players[0]
 
@@ -241,7 +240,7 @@ const Game = () => {
 
                     console.log(stunsCardPile)
 
-
+                }
             break;
             case 'Player 3':
 
@@ -263,10 +262,9 @@ const Game = () => {
 
                         if(players.length === 0){
                             calculateStunsPlayers(stunsCardPile);
+                        } else{
 
-                            break;
 
-                        }
 
                     let nextTurn = players[0]
 
@@ -281,7 +279,7 @@ const Game = () => {
                     }
 
                     console.log(stunsCardPile)
-
+                }
             break;
             case 'Player 4':
 
@@ -303,10 +301,9 @@ const Game = () => {
 
                         if(players.length === 0){
                             calculateStunsPlayers(stunsCardPile);
+                        }else {
 
-                            break;
 
-                        }
 
                     let nextTurn = players[0]
 
@@ -322,7 +319,7 @@ const Game = () => {
 
                     console.log(stunsCardPile)
 
-
+                }
 
             break;
         }
