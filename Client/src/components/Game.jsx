@@ -247,7 +247,7 @@ const Game = () => {
                 case 'Player 2':
                     socket.emit('updateGameState', {
                         turn: 'Player 2',
-                        playerFlippedCards: [...playedCardsPile],
+                        player2FlippedCards: [...playedCardsPile],
                         playedCardsPile: [],
                         history: [],
                         count: newCount,
