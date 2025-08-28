@@ -56,6 +56,7 @@ const Game = () => {
     useEffect(() => {
         const shuffledCards = new DeckClass();
 
+
         const drawCardsPile = shuffledCards.deck;
 
         const player1Deck = shuffledCards.deck.splice(0, 3);
@@ -321,7 +322,7 @@ const Game = () => {
 
                     if (player1Deck[i].value === playedCardsPile[j].value) {
                         check = true;
-                        stunsCards.push(player2Deck[i]);
+                        stunsCards.push(player1Deck[i]);
                     }
 
                 }
